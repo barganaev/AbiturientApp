@@ -8,6 +8,31 @@ class FeedbackScreen extends StatefulWidget {
 class _FeedbackScreenState extends State<FeedbackScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Обратная связь'),
+          centerTitle: true,
+          bottom: TabBar(
+            isScrollable: true,
+            tabs: [
+              Tab(
+                text: 'виртуальный блог',
+                // icon: Icon(Icons.add),
+              ),
+              Tab(
+                text: 'приемная комиссия',
+                // icon: Icon(Icons.add),
+              ),
+              Tab(
+                text: 'тел.доверие',
+                // icon: Icon(Icons.add),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
