@@ -38,11 +38,33 @@ class _RequestsScreenState extends State<RequestsScreen> {
             // Center(child: Text('Center 2'),),
             Column(
               children: [
-                ElevatedButton(onPressed: (){}, child: Text('назн. собес')),
-                ElevatedButton(onPressed: (){}, child: Text('результат собес')),
+                ElevatedButton(onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Hello 1'),
+                    duration: Duration(seconds: 1),));
+                }, child: Text('назн. собес')),
+                ElevatedButton(onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Hello 2'),
+                    duration: Duration(seconds: 1),));
+                }, child: Text('результат собес')),
               ],
             ),
-            Center(child: Text('Center 3'),),
+            // Center(child: Text('Center 3'),),
+            Column(
+              children: [
+                ElevatedButton(onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Hello 1'),
+                    duration: Duration(seconds: 1),));
+                }, child: Text('итоги грантов')),
+                ElevatedButton(onPressed: (){
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                    content: Text('Hello 2'),
+                    duration: Duration(seconds: 1),));
+                }, child: Text('не освоенные')),
+              ],
+            ),
           ],
         ),
       ),
