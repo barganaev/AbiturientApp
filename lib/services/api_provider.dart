@@ -64,7 +64,7 @@ class ApiProvider {
         break;
       case 400:
         log("IN THE 404");
-        throw Exception("JACKSON");
+        throw Exception("ASANICHE");
         break;
       // throw BadRequestException(response.body.toString());
       case 401:
