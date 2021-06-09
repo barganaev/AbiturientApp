@@ -8,6 +8,39 @@ class GuideScreen extends StatefulWidget {
 class _GuideScreenState extends State<GuideScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return DefaultTabController(
+      length: 5,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Справочник'),
+          centerTitle: true,
+          bottom: TabBar(
+            isScrollable: true,
+            tabs: [
+              Tab(
+                text: 'колледжей',
+                // icon: Icon(Icons.add),
+              ),
+              Tab(
+                text: 'специальности',
+                // icon: Icon(Icons.add),
+              ),
+              Tab(
+                text: 'места',
+                // icon: Icon(Icons.add),
+              ),
+              Tab(
+                text: 'атлас специальности',
+                // icon: Icon(Icons.add),
+              ),
+              Tab(
+                text: 'полезные ресурсы',
+                // icon: Icon(Icons.add),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }
