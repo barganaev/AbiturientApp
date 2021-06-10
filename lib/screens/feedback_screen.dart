@@ -37,18 +37,94 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
         ),
         body: TabBarView(
           children: [
-            Column(
+            ListView(
               children: [
-                ElevatedButton(onPressed: (){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Hello 1'),
-                    duration: Duration(seconds: 1),));
-                }, child: Text('вопрос')),
-                ElevatedButton(onPressed: (){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Hello 2'),
-                    duration: Duration(seconds: 1),));
-                }, child: Text('ответ')),
+                // Text('Вопрос'),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
+                  child: Container(
+                    // color: Colors.red,
+                    // height: MediaQuery.of(context).size.height * 0.3,
+                    child: Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Container(
+                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.05),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                Text('Вопрос', style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),),
+                                Text('10 июнь 2021', style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.03),),
+                              ],
+                            ),
+                            FormField(
+                              builder: (FormFieldState<int> state) {
+                                return TextField(
+                                  maxLines: 10,
+                                  decoration: InputDecoration(
+                                    border: InputBorder.none
+                                  ),
+                                );
+                              }
+                            ),
+                          ],
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 10,
+                    ),
+                  ),
+                ),
+                // Text('Ответ'),
+                Padding(
+                  padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
+                  child: Container(
+                    // color: Colors.red,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    child: Card(
+                      semanticContainer: true,
+                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text('Ответ', style: TextStyle(fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).size.width * 0.05),),
+                              Text('10 июнь 2021', style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.03),),
+                            ],
+                          ),
+                          FormField(
+                            builder: (FormFieldState<int> state) {
+                              return TextField(
+                                decoration: InputDecoration(
+                                    border: InputBorder.none
+                                ),
+                              );
+                            }
+                          ),
+                        ],
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      elevation: 10,
+                    ),
+                  ),
+                ),
+                // ElevatedButton(onPressed: (){
+                //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                //     content: Text('Hello 1'),
+                //     duration: Duration(seconds: 1),));
+                // }, child: Text('вопрос')),
+                // ElevatedButton(onPressed: (){
+                //   ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                //     content: Text('Hello 2'),
+                //     duration: Duration(seconds: 1),));
+                // }, child: Text('ответ')),
               ],
             ),
             Column(
