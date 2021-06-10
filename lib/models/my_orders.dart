@@ -4,13 +4,13 @@
 
 import 'dart:convert';
 
-MyOrdersModel myOrdersModelFromJson(String str) =>
-    MyOrdersModel.fromJson(json.decode(str));
+DetailOrderModel myOrdersModelFromJson(String str) =>
+    DetailOrderModel.fromJson(json.decode(str));
 
-String myOrdersModelToJson(MyOrdersModel data) => json.encode(data.toJson());
+String myOrdersModelToJson(DetailOrderModel data) => json.encode(data.toJson());
 
-class MyOrdersModel {
-  MyOrdersModel({
+class DetailOrderModel {
+  DetailOrderModel({
     this.status,
     this.data,
   });
@@ -18,7 +18,7 @@ class MyOrdersModel {
   String status;
   Data data;
 
-  factory MyOrdersModel.fromJson(Map<String, dynamic> json) => MyOrdersModel(
+  factory DetailOrderModel.fromJson(Map<String, dynamic> json) => DetailOrderModel(
         status: json["status"],
         data: Data.fromJson(json["data"]),
       );

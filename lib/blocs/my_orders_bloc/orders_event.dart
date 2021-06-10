@@ -1,6 +1,6 @@
 part of 'orders_bloc.dart';
 
 @immutable
-abstract class OrdersEvent {}
+abstract class DetailOrderEvent {}
 
-class OrdersGetEvent extends OrdersEvent {}
+class DetailOrderGetEvent extends DetailOrderEvent {}

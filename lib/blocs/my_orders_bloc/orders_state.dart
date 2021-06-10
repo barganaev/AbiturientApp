@@ -1,15 +1,15 @@
 part of 'orders_bloc.dart';
 
 @immutable
-abstract class OrdersState {}
+abstract class DetailOrderState {}
 
-class OrdersInitialState extends OrdersState {}
+class DetailOrderInitialState extends DetailOrderState {}
 
-class OrdersLoadedState extends OrdersState {
-  MyOrdersModel myOrdersModel;
-  OrdersLoadedState({this.myOrdersModel});
+class DetailOrderLoadedState extends DetailOrderState {
+  DetailOrderModel myOrdersModel;
+  DetailOrderLoadedState({this.myOrdersModel});
 }
 
-class OrdersLoadingState extends OrdersState {}
+class DetailOrderLoadingState extends DetailOrderState {}
 
-class OrdersErrorState extends OrdersState {}
+class DetailOrderErrorState extends DetailOrderState {}

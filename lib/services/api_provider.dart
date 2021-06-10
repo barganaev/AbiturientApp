@@ -7,7 +7,7 @@ import 'package:abiturient_app/utils/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
-enum RequestNames { login, myOrders }
+enum RequestNames { login, detailOrder }
 //{{individual_p12}}
 
 class ApiProvider {
@@ -48,10 +48,10 @@ class ApiProvider {
         }
         return responseJson;
         break;
-      case RequestNames.myOrders:
+      case RequestNames.detailOrder:
         try {
           final response = await http.get(
-            Uri.parse(MY_ORDERS),
+            Uri.parse(DETAIL_ORDER),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
               'X-Auth':
@@ -81,8 +81,9 @@ class ApiProvider {
 
           LoginModel _loginModel = loginModelFromJson(response.body);
           return _loginModel;
-        } else if (requestname == RequestNames.myOrders) {
-          MyOrdersModel _myOrdersModel = myOrdersModelFromJson(response.body);
+        } else if (requestname == RequestNames.detailOrder) {
+          DetailOrderModel _myOrdersModel =
+              myOrdersModelFromJson(response.body);
           return _myOrdersModel;
         }
         break;

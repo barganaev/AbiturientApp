@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider<OrdersBloc>(
+      home: BlocProvider<DetailOrderBloc>(
         lazy: false,
-        create: (context) => OrdersBloc()..add(OrdersGetEvent()),
+        create: (context) => DetailOrderBloc()..add(DetailOrderGetEvent()),
         child: LoginScreen(),
       ), // MyHomeScreen(),
     );

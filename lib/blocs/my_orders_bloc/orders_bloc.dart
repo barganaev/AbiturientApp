@@ -9,20 +9,20 @@ import 'package:meta/meta.dart';
 part 'orders_event.dart';
 part 'orders_state.dart';
 
-class OrdersBloc extends Bloc<OrdersEvent, OrdersState> {
-  OrdersBloc() : super(OrdersInitialState());
+class DetailOrderBloc extends Bloc<DetailOrderEvent, DetailOrderState> {
+  DetailOrderBloc() : super(DetailOrderInitialState());
 
   @override
-  Stream<OrdersState> mapEventToState(OrdersEvent event) async* {
-    if (event is OrdersGetEvent) {
-      yield OrdersLoadingState();
+  Stream<DetailOrderState> mapEventToState(DetailOrderEvent event) async* {
+    if (event is DetailOrderGetEvent) {
+      yield DetailOrderLoadingState();
       try {
         log("STarting orders");
-        MyOrdersModel _myOrdersModel =
-            await ApiProvider().requestPost(RequestNames.myOrders);
-        yield OrdersLoadedState(myOrdersModel: _myOrdersModel);
+        DetailOrderModel _myOrdersModel =
+            await ApiProvider().requestPost(RequestNames.detailOrder);
+        yield DetailOrderLoadedState(myOrdersModel: _myOrdersModel);
       } catch (e) {
-        yield OrdersErrorState();
+        yield DetailOrderErrorState();
       }
     }
   }
