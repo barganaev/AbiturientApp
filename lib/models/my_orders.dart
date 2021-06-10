@@ -4,13 +4,13 @@
 
 import 'dart:convert';
 
-DetailOrderModel myOrdersModelFromJson(String str) =>
-    DetailOrderModel.fromJson(json.decode(str));
+MyOrdersModel myOrdersModelFromJson(String str) =>
+    MyOrdersModel.fromJson(json.decode(str));
 
-String myOrdersModelToJson(DetailOrderModel data) => json.encode(data.toJson());
+String myOrdersModelToJson(MyOrdersModel data) => json.encode(data.toJson());
 
-class DetailOrderModel {
-  DetailOrderModel({
+class MyOrdersModel {
+  MyOrdersModel({
     this.status,
     this.data,
   });
@@ -18,7 +18,7 @@ class DetailOrderModel {
   String status;
   Data data;
 
-  factory DetailOrderModel.fromJson(Map<String, dynamic> json) => DetailOrderModel(
+  factory MyOrdersModel.fromJson(Map<String, dynamic> json) => MyOrdersModel(
         status: json["status"],
         data: Data.fromJson(json["data"]),
       );
@@ -31,92 +31,126 @@ class DetailOrderModel {
 
 class Data {
   Data({
-    this.block,
+    this.requestList,
   });
 
-  Block block;
+  RequestList requestList;
 
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        block: Block.fromJson(json["block"]),
+        requestList: RequestList.fromJson(json["requestList"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "block": block.toJson(),
+        "requestList": requestList.toJson(),
       };
 }
 
-class Block {
-  Block({
-    this.mainInfo,
+class RequestList {
+  RequestList({
+    this.headers,
+    this.list,
   });
 
-  MainInfo mainInfo;
+  List<Header> headers;
+  List<ListElement> list;
 
-  factory Block.fromJson(Map<String, dynamic> json) => Block(
-        mainInfo: MainInfo.fromJson(json["main_info"]),
+  factory RequestList.fromJson(Map<String, dynamic> json) => RequestList(
+        headers:
+            List<Header>.from(json["headers"].map((x) => Header.fromJson(x))),
+        list: List<ListElement>.from(
+            json["list"].map((x) => ListElement.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "main_info": mainInfo.toJson(),
+        "headers": List<dynamic>.from(headers.map((x) => x.toJson())),
+        "list": List<dynamic>.from(list.map((x) => x.toJson())),
       };
 }
 
-class MainInfo {
-  MainInfo({
-    this.name,
-    this.values,
-  });
-
-  String name;
-  Values values;
-
-  factory MainInfo.fromJson(Map<String, dynamic> json) => MainInfo(
-        name: json["name"],
-        values: Values.fromJson(json["values"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "name": name,
-        "values": values.toJson(),
-      };
-}
-
-class Values {
-  Values({
-    this.citizenStatus,
-  });
-
-  CitizenStatus citizenStatus;
-
-  factory Values.fromJson(Map<String, dynamic> json) => Values(
-        citizenStatus: CitizenStatus.fromJson(json["citizen_status"]),
-      );
-
-  Map<String, dynamic> toJson() => {
-        "citizen_status": citizenStatus.toJson(),
-      };
-}
-
-class CitizenStatus {
-  CitizenStatus({
-    this.type,
-    this.name,
+class Header {
+  Header({
+    this.text,
     this.value,
   });
 
-  String type;
-  String name;
+  String text;
   String value;
 
-  factory CitizenStatus.fromJson(Map<String, dynamic> json) => CitizenStatus(
-        type: json["type"],
-        name: json["name"],
+  factory Header.fromJson(Map<String, dynamic> json) => Header(
+        text: json["text"],
         value: json["value"],
       );
 
   Map<String, dynamic> toJson() => {
-        "type": type,
-        "name": name,
+        "text": text,
         "value": value,
+      };
+}
+
+class ListElement {
+  ListElement({
+    this.id,
+    this.iin,
+    this.fullName,
+    this.birthday,
+    this.graduationYear,
+    this.email,
+    this.phoneNumber,
+    this.parentPhoneNumber,
+    this.isHaveQuota,
+    this.choosedQualificationCount,
+    this.createdAt,
+    this.regionName,
+    this.statusName,
+    this.statusType,
+  });
+
+  String id;
+  String iin;
+  String fullName;
+  String birthday;
+  String graduationYear;
+  String email;
+  String phoneNumber;
+  String parentPhoneNumber;
+  bool isHaveQuota;
+  String choosedQualificationCount;
+  String createdAt;
+  String regionName;
+  String statusName;
+  String statusType;
+
+  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+        id: json["id"],
+        iin: json["iin"],
+        fullName: json["full_name"],
+        birthday: json["birthday"],
+        graduationYear: json["graduation_year"],
+        email: json["email"],
+        phoneNumber: json["phone_number"],
+        parentPhoneNumber: json["parent_phone_number"],
+        isHaveQuota: json["is_have_quota"],
+        choosedQualificationCount: json["choosed_qualification_count"],
+        createdAt: json["created_at"],
+        regionName: json["region_name"],
+        statusName: json["status_name"],
+        statusType: json["status_type"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "iin": iin,
+        "full_name": fullName,
+        "birthday": birthday,
+        "graduation_year": graduationYear,
+        "email": email,
+        "phone_number": phoneNumber,
+        "parent_phone_number": parentPhoneNumber,
+        "is_have_quota": isHaveQuota,
+        "choosed_qualification_count": choosedQualificationCount,
+        "created_at": createdAt,
+        "region_name": regionName,
+        "status_name": statusName,
+        "status_type": statusType,
       };
 }

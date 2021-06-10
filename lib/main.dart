@@ -1,11 +1,14 @@
-import 'package:abiturient_app/blocs/my_orders_bloc/orders_bloc.dart';
-import 'package:abiturient_app/models/my_orders.dart';
+import 'package:abiturient_app/blocs/all_colleges_bloc/all_colleges_bloc.dart';
+import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
+import 'package:abiturient_app/models/detail_order_model.dart';
 import 'package:abiturient_app/screens/home_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
+
+import 'blocs/detail_order_bloc/orders_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,9 +27,21 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BlocProvider<DetailOrderBloc>(
-        lazy: false,
-        create: (context) => DetailOrderBloc()..add(DetailOrderGetEvent()),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider<DetailOrderBloc>(
+            // lazy: false,
+            create: (context) => DetailOrderBloc()..add(DetailOrderGetEvent()),
+          ),
+          BlocProvider<MyOrdersBloc>(
+            // lazy: false,
+            create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
+          ),
+          BlocProvider<AllCollegesBloc>(
+            lazy: false,
+            create: (context) => AllCollegesBloc()..add(AllCollegesGetEvent()),
+          ),
+        ],
         child: LoginScreen(),
       ), // MyHomeScreen(),
     );

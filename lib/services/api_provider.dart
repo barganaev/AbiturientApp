@@ -1,13 +1,15 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:abiturient_app/models/all_colleges_model.dart';
 import 'package:abiturient_app/models/login_model.dart';
+import 'package:abiturient_app/models/detail_order_model.dart';
 import 'package:abiturient_app/models/my_orders.dart';
 import 'package:abiturient_app/utils/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
-enum RequestNames { login, detailOrder }
+enum RequestNames { login, detailOrder, myOrders, allColleges }
 //{{individual_p12}}
 
 class ApiProvider {
@@ -66,6 +68,40 @@ class ApiProvider {
         }
         return responseJson;
         break;
+      case RequestNames.myOrders:
+        try {
+          final response = await http.get(
+            Uri.parse(MY_ORdERS),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+              'X-Auth':
+                  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmFiaXR1cmllbnQuZWR1cy5reiIsImF1ZCI6Imh0dHBzOlwvXC9hYml0dXJpZW50LmVkdXMua3oiLCJpYXQiOjE2MjMzMDYzMjUsImV4cCI6MTYyMzM5MjcyNSwiaWluIjoiMTIzNDU2Nzg5MDExIiwiYWNjZXNzIjoiYWJpdHVyaWVudCJ9.EsBG0BcSuSU0iDSPKFY9RLCRA34y2F9wGXQXaPL4I2U',
+            },
+          );
+          log(response.body.toString(), name: "dataBody");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
+      case RequestNames.allColleges:
+        try {
+          final response = await http.get(
+            Uri.parse(ALL_COLLEGES),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+          );
+          log(response.body.toString(), name: "ALL_COLLEGES");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
       default:
         return Exception();
     }
@@ -82,9 +118,16 @@ class ApiProvider {
           LoginModel _loginModel = loginModelFromJson(response.body);
           return _loginModel;
         } else if (requestname == RequestNames.detailOrder) {
-          DetailOrderModel _myOrdersModel =
-              myOrdersModelFromJson(response.body);
+          DetailOrderModel _detailOrderModel =
+              detailOrderModelFromJson(response.body);
+          return _detailOrderModel;
+        } else if (requestname == RequestNames.myOrders) {
+          MyOrdersModel _myOrdersModel = myOrdersModelFromJson(response.body);
           return _myOrdersModel;
+        } else if (requestname == RequestNames.allColleges) {
+          AllCollegesModel _allCollegesModel =
+              allCollegesModelFromJson(response.body);
+          return _allCollegesModel;
         }
         break;
       case 400:
