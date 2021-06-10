@@ -34,35 +34,51 @@ class _RequestsScreenState extends State<RequestsScreen> {
         ),
         body: TabBarView(
           children: [
-            Center(child: Text('Поданные зая. об.'),),
+            Center(
+              child: Text('Поданные зая. об.'),
+            ),
             // Center(child: Text('Center 2'),),
             Column(
               children: [
-                ElevatedButton(onPressed: (){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Hello 1'),
-                    duration: Duration(seconds: 1),));
-                }, child: Text('назн. собес')),
-                ElevatedButton(onPressed: (){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Hello 2'),
-                    duration: Duration(seconds: 1),));
-                }, child: Text('результат собес')),
+                ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Hello 1'),
+                        duration: Duration(seconds: 1),
+                      ));
+                    },
+                    child: Text('назн. собес')),
+                ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Hello 2'),
+                        duration: Duration(seconds: 1),
+                      ));
+                    },
+                    child: Text('результат собес')),
               ],
             ),
             // Center(child: Text('Center 3'),),
             Column(
               children: [
-                ElevatedButton(onPressed: (){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Hello 1'),
-                    duration: Duration(seconds: 1),));
-                }, child: Text('итоги грантов')),
-                ElevatedButton(onPressed: (){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                    content: Text('Hello 2'),
-                    duration: Duration(seconds: 1),));
-                }, child: Text('не освоенные')),
+                ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(
+                          content: Text('Hello 1'),
+                          duration: Duration(seconds: 1),
+                        ),
+                      );
+                    },
+                    child: Text('итоги грантов')),
+                ElevatedButton(
+                    onPressed: () {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Hello 2'),
+                        duration: Duration(seconds: 1),
+                      ));
+                    },
+                    child: Text('не освоенные')),
               ],
             ),
           ],

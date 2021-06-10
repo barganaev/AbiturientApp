@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'dart:developer';
 
-import 'package:abiturient_app/models/my_orders.dart';
+import 'package:abiturient_app/models/detail_order_model.dart';
 import 'package:abiturient_app/services/api_provider.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
