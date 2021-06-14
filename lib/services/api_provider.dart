@@ -119,10 +119,10 @@ class ApiProvider {
           return _loginModel;
         } else if (requestname == RequestNames.detailOrder) {
           DetailOrderModel _detailOrderModel =
-              detailOrderModelFromJson(response.body);
+              detailOrderModelFromJson(response.bodyBytes);
           return _detailOrderModel;
         } else if (requestname == RequestNames.myOrders) {
-          MyOrdersModel _myOrdersModel = myOrdersModelFromJson(response.body);
+          MyOrdersModel _myOrdersModel = myOrdersModelFromJson(response.bodyBytes);
           return _myOrdersModel;
         } else if (requestname == RequestNames.allColleges) {
           AllCollegesModel _allCollegesModel =

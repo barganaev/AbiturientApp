@@ -20,7 +20,7 @@ class DetailOrderBloc extends Bloc<DetailOrderEvent, DetailOrderState> {
         log("STarting orders");
         DetailOrderModel _myOrdersModel =
             await ApiProvider().requestPost(RequestNames.detailOrder);
-        yield DetailOrderLoadedState(myOrdersModel: _myOrdersModel);
+        yield DetailOrderLoadedState(detailOrderModel: _myOrdersModel);
       } catch (e) {
         yield DetailOrderErrorState();
       }

@@ -6,8 +6,8 @@ abstract class DetailOrderState {}
 class DetailOrderInitialState extends DetailOrderState {}
 
 class DetailOrderLoadedState extends DetailOrderState {
-  DetailOrderModel myOrdersModel;
-  DetailOrderLoadedState({this.myOrdersModel});
+  DetailOrderModel detailOrderModel;
+  DetailOrderLoadedState({this.detailOrderModel});
 }
 
 class DetailOrderLoadingState extends DetailOrderState {}
