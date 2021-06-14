@@ -33,7 +33,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 // icon: Icon(Icons.add),
               ),
               Tab(
-                text: 'итоги',
+                text: 'колледжы',
                 // icon: Icon(Icons.add),
               ),
             ],
@@ -146,57 +146,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
                           );
                         },
                       );
-
-
-
-
-
-                      //   Column(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     Text(
-                      //       "state.detailOrderModel.data.block.mainInfo.name.toString()" /*'Основные данные 123'*/,
-                      //       style: TextStyle(fontWeight: FontWeight.bold),
-                      //     ),
-                      //     Row(
-                      //       mainAxisAlignment: MainAxisAlignment.center,
-                      //       children: [
-                      //         Text(
-                      //           '${state.myOrdersModel.data.requestList.list[0].id}'),
-                      //         Text(
-                      //           '${state.myOrdersModel.data.requestList.list}'),
-                      //       ],
-                      //     )
-                      //   ],
-                      // );
-
-
-
-
-
-
-                      //   Column(
-                      //   children: [
-                      //     ElevatedButton(
-                      //         onPressed: () {
-                      //           ScaffoldMessenger.of(context)
-                      //               .showSnackBar(SnackBar(
-                      //             content: Text('Hello 1'),
-                      //             duration: Duration(seconds: 1),
-                      //           ));
-                      //         },
-                      //         child: Text('назн. собес')),
-                      //     ElevatedButton(
-                      //         onPressed: () {
-                      //           ScaffoldMessenger.of(context)
-                      //               .showSnackBar(SnackBar(
-                      //             content: Text('Hello 2'),
-                      //             duration: Duration(seconds: 1),
-                      //           ));
-                      //         },
-                      //         child: Text('результат собес')),
-                      //   ],
-                      // );
                     } else if (state is MyOrdersLoadingState) {
                       return Center(child: CircularProgressIndicator(),
                       );
@@ -211,98 +160,70 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     }
                   },
                 ),
-                // Center(child: Text('Center 3'),),
-                Column(
-                  children: [
-                    ElevatedButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Hello 1'),
-                            duration: Duration(seconds: 1),
-                          ));
-                        },
-                        child: Text('итоги грантов')),
-                    ElevatedButton(
-                        onPressed: () {
-                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                            content: Text('Hello 2'),
-                            duration: Duration(seconds: 1),
-                          ));
-                        },
-                        child: Text('не освоенные')),
-                  ],
-                ),
+
+                BlocBuilder<AllCollegesBloc, AllCollegesState>(
+                  builder: (context, state) {
+                    if (state is AllCollegesLoadedState) {
+                      return ListView.builder(
+                        itemCount: state.allCollegesModel.data.list.length,
+                        itemBuilder: (context, index) {
+                          // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
+                          return Container(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
+                                  child: Container(
+                                  // color: Colors.red,
+                                    height: MediaQuery.of(context).size.height * 0.3,
+                                    child: Card(
+                                      semanticContainer: true,
+                                      clipBehavior: Clip.antiAliasWithSaveLayer,
+                                      child: Container(
+                                        padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            children: [
+                                              Text('${state.allCollegesModel.data.list[index].name}'),
+                                              Text('${state.allCollegesModel.data.list[index].address}'),
+                                              Text('${state.allCollegesModel.data.list[index].phoneNumber}'),
+                                              Text('${state.allCollegesModel.data.list[index].regionName}'),
+                                              Text('${state.allCollegesModel.data.list[index].ownershipName}'),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                      elevation: 10,
+                                    ),
+                                  ),
+                              ),
+                                // Text('${state.allCollegesModel.data.list[index].name}'),
+                                Divider(),
+                              ],
+                            ),
+                          );
+                        }
+                      );
+                    } else if (state is AllCollegesLoadingState) {
+                      return Center(child: CircularProgressIndicator(),
+                      );
+                    } else if (state is AllCollegesErrorState) {
+                      return Center(
+                        child: Text('Look for request_screen.dart'),
+                      );
+                    } else {
+                      return Center(
+                        child: Text('Error in request_screen.dart'),
+                      );
+                    }
+                  }
+                )
               ],
             )
-
-            // child: BlocBuilder<DetailOrderBloc, DetailOrderState>(
-            //   builder: (context, state) {
-            //     if (state is DetailOrderLoadedState) {
-            //       return TabBarView(
-            //         children: [
-            //           Column(
-            //             mainAxisAlignment: MainAxisAlignment.center,
-            //             children: [
-            //               Text(state.detailOrderModel.data.block.mainInfo.name.toString()/*'Основные данные 123'*/, style: TextStyle(fontWeight: FontWeight.bold),),
-            //               Row(
-            //                 mainAxisAlignment: MainAxisAlignment.center,
-            //                 children: [
-            //                   // Text('Статус гражданина: '),
-            //                   // Text('Резидент Республики Казахстан'),
-            //                   Text('${state.detailOrderModel.data.block.mainInfo.values.citizenStatus.name}'),
-            //                   Text('${state.detailOrderModel.data.block.mainInfo.values.citizenStatus.value}'),
-            //                 ],
-            //               )
-            //             ],
-            //           ),
-            //           // Center(child: Text('Поданные зая. об.'),),
-            //           Column(
-            //             children: [
-            //               ElevatedButton(onPressed: (){
-            //                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //                   content: Text('Hello 1'),
-            //                   duration: Duration(seconds: 1),));
-            //               }, child: Text('назн. собес')),
-            //               ElevatedButton(onPressed: (){
-            //                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //                   content: Text('Hello 2'),
-            //                   duration: Duration(seconds: 1),));
-            //               }, child: Text('результат собес')),
-            //             ],
-            //           ),
-            //           // Center(child: Text('Center 3'),),
-            //           Column(
-            //             children: [
-            //               ElevatedButton(onPressed: (){
-            //                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //                   content: Text('Hello 1'),
-            //                   duration: Duration(seconds: 1),));
-            //               }, child: Text('итоги грантов')),
-            //               ElevatedButton(onPressed: (){
-            //                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            //                   content: Text('Hello 2'),
-            //                   duration: Duration(seconds: 1),));
-            //               }, child: Text('не освоенные')),
-            //             ],
-            //           ),
-            //         ],
-            //       );
-            //     } else if (state is DetailOrderLoadingState) {
-            //       return Center(
-            //         child: CircularProgressIndicator(),
-            //       );
-            //     } else if (state is DetailOrderErrorState) {
-            //       return Center(
-            //         child: Text('Look for Request_screen.dart'),
-            //       );
-            //     } else {
-            //       return Center(
-            //         child: Text('Error in request_screen.dart'),
-            //       );
-            //     }
-            //   },
-            // ),
-            ),
+          ),
       ),
     );
   }

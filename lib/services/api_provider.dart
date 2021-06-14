@@ -166,7 +166,7 @@ class ApiProvider {
           return _myOrdersModel;
         } else if (requestname == RequestNames.allColleges) {
           AllCollegesModel _allCollegesModel =
-              allCollegesModelFromJson(response.body);
+              allCollegesModelFromJson(response.bodyBytes);
           return _allCollegesModel;
         } else if (requestname == RequestNames.regions) {
           RegionsModel _regionsModel = regionsModelFromJson(response.bodyBytes);

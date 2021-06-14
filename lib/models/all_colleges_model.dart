@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-AllCollegesModel allCollegesModelFromJson(String str) =>
-    AllCollegesModel.fromJson(json.decode(str));
+AllCollegesModel allCollegesModelFromJson(List<int> str) =>
+    AllCollegesModel.fromJson(json.decode(utf8.decode(str)));
 
 String allCollegesModelToJson(AllCollegesModel data) =>
     json.encode(data.toJson());
