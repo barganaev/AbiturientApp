@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-MyOrdersModel myOrdersModelFromJson(String str) =>
-    MyOrdersModel.fromJson(json.decode(str));
+MyOrdersModel myOrdersModelFromJson(List<int> str) =>
+    MyOrdersModel.fromJson(json.decode(utf8.decode(str)));
 
 String myOrdersModelToJson(MyOrdersModel data) => json.encode(data.toJson());
 
@@ -52,13 +52,13 @@ class RequestList {
   });
 
   List<Header> headers;
-  List<ListElement> list;
+  List<ListElementt> list;
 
   factory RequestList.fromJson(Map<String, dynamic> json) => RequestList(
         headers:
             List<Header>.from(json["headers"].map((x) => Header.fromJson(x))),
-        list: List<ListElement>.from(
-            json["list"].map((x) => ListElement.fromJson(x))),
+        list: List<ListElementt>.from(
+            json["list"].map((x) => ListElementt.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -87,8 +87,8 @@ class Header {
       };
 }
 
-class ListElement {
-  ListElement({
+class ListElementt {
+  ListElementt({
     this.id,
     this.iin,
     this.fullName,
@@ -120,7 +120,7 @@ class ListElement {
   String statusName;
   String statusType;
 
-  factory ListElement.fromJson(Map<String, dynamic> json) => ListElement(
+  factory ListElementt.fromJson(Map<String, dynamic> json) => ListElementt(
         id: json["id"],
         iin: json["iin"],
         fullName: json["full_name"],

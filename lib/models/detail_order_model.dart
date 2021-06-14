@@ -4,8 +4,8 @@
 
 import 'dart:convert';
 
-DetailOrderModel detailOrderModelFromJson(String str) =>
-    DetailOrderModel.fromJson(json.decode(str));
+DetailOrderModel detailOrderModelFromJson(List<int> str) =>
+    DetailOrderModel.fromJson(json.decode(utf8.decode(str)));
 
 String detailOrderModelToJson(DetailOrderModel data) =>
     json.encode(data.toJson());
