@@ -56,8 +56,7 @@ class ApiProvider {
             Uri.parse(DETAIL_ORDER),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
-              'X-Auth':
-                  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmFiaXR1cmllbnQuZWR1cy5reiIsImF1ZCI6Imh0dHBzOlwvXC9hYml0dXJpZW50LmVkdXMua3oiLCJpYXQiOjE2MjMzMDYzMjUsImV4cCI6MTYyMzM5MjcyNSwiaWluIjoiMTIzNDU2Nzg5MDExIiwiYWNjZXNzIjoiYWJpdHVyaWVudCJ9.EsBG0BcSuSU0iDSPKFY9RLCRA34y2F9wGXQXaPL4I2U',
+              'X-Auth': _token,
             },
           );
           log(response.body.toString(), name: "dataBody");
@@ -74,8 +73,7 @@ class ApiProvider {
             Uri.parse(MY_ORdERS),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
-              'X-Auth':
-                  'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLmFiaXR1cmllbnQuZWR1cy5reiIsImF1ZCI6Imh0dHBzOlwvXC9hYml0dXJpZW50LmVkdXMua3oiLCJpYXQiOjE2MjMzMDYzMjUsImV4cCI6MTYyMzM5MjcyNSwiaWluIjoiMTIzNDU2Nzg5MDExIiwiYWNjZXNzIjoiYWJpdHVyaWVudCJ9.EsBG0BcSuSU0iDSPKFY9RLCRA34y2F9wGXQXaPL4I2U',
+              'X-Auth': _token,
             },
           );
           log(response.body.toString(), name: "dataBody");
@@ -122,7 +120,8 @@ class ApiProvider {
               detailOrderModelFromJson(response.bodyBytes);
           return _detailOrderModel;
         } else if (requestname == RequestNames.myOrders) {
-          MyOrdersModel _myOrdersModel = myOrdersModelFromJson(response.bodyBytes);
+          MyOrdersModel _myOrdersModel =
+              myOrdersModelFromJson(response.bodyBytes);
           return _myOrdersModel;
         } else if (requestname == RequestNames.allColleges) {
           AllCollegesModel _allCollegesModel =
