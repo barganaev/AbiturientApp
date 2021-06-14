@@ -207,34 +207,23 @@ class _RequestsScreenState extends State<RequestsScreen> {
                           );
                         }
                       );
+                    } else if (state is AllCollegesLoadingState) {
+                      return Center(child: CircularProgressIndicator(),
+                      );
+                    } else if (state is AllCollegesErrorState) {
+                      return Center(
+                        child: Text('Look for request_screen.dart'),
+                      );
+                    } else {
+                      return Center(
+                        child: Text('Error in request_screen.dart'),
+                      );
                     }
                   }
                 )
-
-                // Column(
-                //   children: [
-                //     ElevatedButton(
-                //         onPressed: () {
-                //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //             content: Text('Hello 1'),
-                //             duration: Duration(seconds: 1),
-                //           ));
-                //         },
-                //         child: Text('итоги грантов')),
-                //     ElevatedButton(
-                //         onPressed: () {
-                //           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                //             content: Text('Hello 2'),
-                //             duration: Duration(seconds: 1),
-                //           ));
-                //         },
-                //         child: Text('не освоенные')),
-                //   ],
-                // ),
-
               ],
             )
-            ),
+          ),
       ),
     );
   }
