@@ -2,14 +2,23 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:abiturient_app/models/all_colleges_model.dart';
+import 'package:abiturient_app/models/colleges_by_region_model.dart';
 import 'package:abiturient_app/models/login_model.dart';
 import 'package:abiturient_app/models/detail_order_model.dart';
 import 'package:abiturient_app/models/my_orders.dart';
+import 'package:abiturient_app/models/regions_model.dart';
 import 'package:abiturient_app/utils/constants.dart';
 import 'package:hive/hive.dart';
 import 'package:http/http.dart' as http;
 
-enum RequestNames { login, detailOrder, myOrders, allColleges }
+enum RequestNames {
+  login,
+  detailOrder,
+  myOrders,
+  allColleges,
+  collegesByRegion,
+  regions,
+}
 //{{individual_p12}}
 
 class ApiProvider {
@@ -100,6 +109,38 @@ class ApiProvider {
         }
         return responseJson;
         break;
+      case RequestNames.regions:
+        try {
+          final response = await http.get(
+            Uri.parse(REGIONS),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+          );
+          // log(response.body.toString(), name: "REGIONS");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
+      case RequestNames.collegesByRegion:
+        try {
+          final response = await http.get(
+            Uri.parse(COLLEGES_BY_REGION),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+          );
+          // log(response.body.toString(), name: "COLLEGES_BY_REGION");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
       default:
         return Exception();
     }
@@ -127,6 +168,18 @@ class ApiProvider {
           AllCollegesModel _allCollegesModel =
               allCollegesModelFromJson(response.body);
           return _allCollegesModel;
+        } else if (requestname == RequestNames.regions) {
+          RegionsModel _regionsModel = regionsModelFromJson(response.bodyBytes);
+          log(_regionsModel.toJson().toString(), name: "COLLEGES_BY_REGION");
+
+          return _regionsModel;
+        } else if (requestname == RequestNames.collegesByRegion) {
+          CollegesByRegionModel _collegesByRegionModel =
+              collegesByRegionModelFromJson(response.bodyBytes);
+          log(_collegesByRegionModel.toJson().toString(),
+              name: "COLLEGES_BY_REGION");
+
+          return _collegesByRegionModel;
         }
         break;
       case 400:
