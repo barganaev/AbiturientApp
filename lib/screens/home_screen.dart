@@ -13,9 +13,8 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   int _selectedIndex = 0;
   List<Widget> _widgetOptions = <Widget>[
     RequestsScreen(),
-    GuideScreen(), // Favorites(),
-    FeedbackScreen(), // Account(),
-    // AuctionScreen(),
+    GuideScreen(),
+    FeedbackScreen(),
   ];
 
   void _onItemTap(int index) {

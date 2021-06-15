@@ -75,7 +75,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     )
                   ],
                 ),
-                // Center(child: Text('Поданные зая. об.'),),
                 BlocBuilder<MyOrdersBloc, MyOrdersState>(
                   builder: (context, state) {
                     if (state is MyOrdersLoadedState) {
