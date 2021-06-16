@@ -18,6 +18,8 @@ dependencies:
   hive: ^2.0.4
   file_picker: ^3.0.2+2
   path_provider: ^2.0.1
+  webview_flutter: ^2.0.8
+  url_launcher: ^6.0.6
 
 
 dev_dependencies:
