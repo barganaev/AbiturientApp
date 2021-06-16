@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GuideScreen extends StatefulWidget {
-  List<RegionsModel> list;
+  List<Datum> list;
   GuideScreen({this.list});
 
   @override
@@ -17,26 +17,31 @@ class _GuideScreenState extends State<GuideScreen> {
   int indexOfCity = 0;
   int _value = 1;
 
-  // void onChangedCallback(region) async {
-  //   selectedRegion = region;
-  //   for (int i = 0; i < widget.list.length; i++) {
-  //     if (region == widget.list[i].data[i].name) {
-  //       setState(() {
-  //         indexOfCity = i;
-  //         BlocProvider.of<RegionsBloc>(_scaffoldState.currentContext)
-  //             .add(RegionsGetEvent(
-  //             regionId: widget.list[i].id.toString()));
-  //       });
-  //     }
-  //   }
-  // }
+  final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
+
+  void onChangedCallback(city) async {
+    selectedRegion = city;
+    for (int i = 0; i < widget.list.length; i++) {
+      if (city == widget.list[i].name) {
+        setState(() {
+          indexOfCity = i;
+          // BlocProvider.of<ListOfStationsBloc>(_scaffoldState.currentContext)
+          //     .add(ListOfStationsGetEvent(
+          //         regionId: widget.list[i].id.toString()));
+        });
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize: Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-          child: AppBarWidget(title: "Колледж",)),
+          preferredSize:
+              Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
+          child: AppBarWidget(
+            title: "Колледж",
+          )),
       body: MultiBlocProvider(
         providers: [
           BlocProvider<RegionsBloc>(
@@ -44,18 +49,18 @@ class _GuideScreenState extends State<GuideScreen> {
           ),
         ],
         child: BlocBuilder<RegionsBloc, RegionsState>(
-          builder: (context, state){
+          builder: (context, state) {
             if (state is RegionsLoadedState) {
               // selectedRegion = widget.list[indexOfCity].name;
+              widget.list = state.regionsModel.data;
               selectedRegion = state.regionsModel.data[indexOfCity].name;
               return Align(
                 alignment: Alignment.topCenter,
                 child: Container(
                   width: MediaQuery.of(context).size.width * 0.7,
                   padding: EdgeInsets.only(left: 10),
-                  decoration: BoxDecoration(
-                      border: Border.all(color: Colors.grey)
-                  ),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
                   child: DropdownButton(
                     isExpanded: true,
                     value: selectedRegion,
@@ -65,7 +70,7 @@ class _GuideScreenState extends State<GuideScreen> {
                         child: Text(value.name ?? "text"),
                       );
                     }).toList(),
-                    // onChanged: onChangeCallback,
+                    onChanged: onChangedCallback,
                     //     (value) {
                     //   setState(() {
                     //     _value = value;

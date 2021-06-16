@@ -3,6 +3,7 @@ import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_
 import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/models/detail_order_model.dart';
+import 'package:abiturient_app/screens/auth_screen.dart';
 import 'package:abiturient_app/screens/home_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -53,7 +54,8 @@ class MyApp extends StatelessWidget {
             create: (context) => RegionsBloc()..add(RegionsGetEvent()),
           ),
         ],
-        child: LoginScreen(),
+        child: AuthScreen(),
+        // LoginScreen(),
       ), // MyHomeScreen(),
     );
   }

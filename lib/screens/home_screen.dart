@@ -1,3 +1,4 @@
+import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/screens/apply_request_screen.dart';
 import 'package:abiturient_app/screens/college_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
@@ -6,6 +7,7 @@ import 'package:abiturient_app/screens/requests_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'feedback_screen.dart';
 import 'guide_screen.dart';
@@ -22,93 +24,118 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
       child: ListView(
         children: [
           Container(
-            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
+            padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               children: [
                 CircleAvatar(
                   child: Icon(Icons.account_circle),
                 ),
-                Text('АБИТУРИЕНТ', style: TextStyle(fontWeight: FontWeight.bold, color: Color(0xFF1269db)),)
+                Text(
+                  'АБИТУРИЕНТ',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Color(0xFF1269db)),
+                )
               ],
             ),
           ),
-          Divider(color: Color(0xFF1269db),),
+          Divider(
+            color: Color(0xFF1269db),
+          ),
           ListTile(
             leading: Icon(Icons.account_circle),
             title: Text('Мои заявки'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Подать заявку'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ApplyRequestScreen()));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ApplyRequestScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.location_on),
             title: Text('Колледжи'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => CollegeScreen()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => CollegeScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.assistant_navigation),
             title: Text('Специальности'),
-            onTap: (){
+            onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.question_answer),
             title: Text('Вопросы-ответы'),
-            onTap: (){
+            onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.all_inbox),
             title: Text('Новости и анонсы'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => NewsScreen()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => NewsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.message),
             title: Text('Виртуальный блог'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => VirtualBlogScreen()));
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => VirtualBlogScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.local_fire_department),
             title: Text('Уведомления'),
-            onTap: (){
+            onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.construction),
             title: Text('Проф. диагностика'),
-            onTap: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ProfDiagnosticScreen()));
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfDiagnosticScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.settings),
             title: Text('Настройки'),
-            onTap: (){
+            onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.app_blocking),
             title: Text('О приложении'),
-            onTap: (){
+            onTap: () {
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GuideScreen()));
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (newcontext) => BlocProvider<RegionsBloc>(
+                    create: (context) => RegionsBloc()..add(RegionsGetEvent()),
+                    child: GuideScreen(),
+                  ),
+                ),
+              );
             },
           ),
         ],
@@ -116,7 +143,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
     );
   }
 }
-
 
 // class MyHomeScreen extends StatefulWidget {
 //   @override
