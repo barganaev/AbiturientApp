@@ -1,3 +1,4 @@
+import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:local_auth/local_auth.dart';
@@ -197,6 +198,12 @@ class _AuthScreenState extends State<AuthScreen> {
               //         ],
               //       ),
             ],
+          ),
+          ElevatedButton(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
+            child: Text('Go to Login Page')
           ),
         ],
       ),

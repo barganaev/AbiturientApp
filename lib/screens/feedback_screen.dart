@@ -15,6 +15,7 @@ class _FeedbackScreenState extends State<FeedbackScreen> {
       length: 3,
       child: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.amber[200],
           title: Text('Обратная связь'),
           centerTitle: true,
           bottom: TabBar(
