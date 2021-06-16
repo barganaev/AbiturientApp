@@ -160,7 +160,6 @@ class _RequestsScreenState extends State<RequestsScreen> {
                     }
                   },
                 ),
-
                 BlocBuilder<AllCollegesBloc, AllCollegesState>(
                   builder: (context, state) {
                     if (state is AllCollegesLoadedState) {
