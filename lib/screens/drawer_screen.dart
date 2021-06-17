@@ -10,7 +10,6 @@ import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'guide_screen.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'about_app_screen.dart';
 

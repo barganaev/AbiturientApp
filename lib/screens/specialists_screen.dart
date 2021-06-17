@@ -46,7 +46,7 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
           preferredSize:
           Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
           child: AppBarWidget(
-            title: "Колледж",
+            title: "Специальности",
           )),
       drawer: MyDrawer(),
       body: MultiBlocProvider(
