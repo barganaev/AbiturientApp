@@ -1,9 +1,9 @@
+import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'dart:developer';
 
 import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/models/regions_model.dart';
-import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -56,8 +56,7 @@ class _GuideScreenState extends State<GuideScreen> {
             create: (context) => RegionsBloc()..add(RegionsGetEvent()),
           ),
           BlocProvider<CollegesByRegionBloc>(
-            create: (context) => CollegesByRegionBloc(),
-          ),
+              create: (context) => CollegesByRegionBloc()),
         ],
         child: BlocBuilder<RegionsBloc, RegionsState>(
           builder: (context, state) {
@@ -95,74 +94,81 @@ class _GuideScreenState extends State<GuideScreen> {
                     if (state2 is CollegesByRegionLoadedState) {
                       return Expanded(
                         child: Container(
-                          child: ListView.builder(
-                              // shrinkWrap: true,
-                              itemCount:
-                                  state2.collegesByRegionModel.data.list.length,
-                              itemBuilder: (context, index) {
-                                // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
-                                return Container(
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            vertical: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                0.05,
-                                            horizontal: MediaQuery.of(context)
-                                                    .size
-                                                    .width *
-                                                0.1),
-                                        child: Container(
-                                          // color: Colors.red,
-                                          height: MediaQuery.of(context)
-                                                  .size
-                                                  .height *
-                                              0.3,
-                                          child: Card(
-                                            semanticContainer: true,
-                                            clipBehavior:
-                                                Clip.antiAliasWithSaveLayer,
-                                            child: Container(
+                            child: state2
+                                    .collegesByRegionModel.data.list.isNotEmpty
+                                ? ListView.builder(
+                                    // shrinkWrap: true,
+                                    itemCount: state2
+                                        .collegesByRegionModel.data.list.length,
+                                    itemBuilder: (context, index) {
+                                      // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
+                                      return Container(
+                                        child: Column(
+                                          children: [
+                                            Padding(
                                               padding: EdgeInsets.symmetric(
+                                                  vertical:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.05,
                                                   horizontal:
                                                       MediaQuery.of(context)
                                                               .size
                                                               .width *
-                                                          0.03),
-                                              child: SingleChildScrollView(
-                                                child: Column(
-                                                  children: [
-                                                    Text(
-                                                        '${state2.collegesByRegionModel.data.list[index].bin}'),
-                                                    Text(
-                                                        '${state2.collegesByRegionModel.data.list[index].name}'),
-                                                    Text(
-                                                        '${state2.collegesByRegionModel.data.list[index].address}'),
-                                                    Text(
-                                                        '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
-                                                    Text(
-                                                        '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
-                                                  ],
+                                                          0.1),
+                                              child: Container(
+                                                // color: Colors.red,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.3,
+                                                child: Card(
+                                                  semanticContainer: true,
+                                                  clipBehavior: Clip
+                                                      .antiAliasWithSaveLayer,
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal:
+                                                            MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.03),
+                                                    child:
+                                                        SingleChildScrollView(
+                                                      child: Column(
+                                                        children: [
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].bin}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].name}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].address}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                  ),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
+                                                  ),
+                                                  elevation: 10,
                                                 ),
                                               ),
                                             ),
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius:
-                                                  BorderRadius.circular(20),
-                                            ),
-                                            elevation: 10,
-                                          ),
+                                            // Text('${state.allCollegesModel.data.list[index].name}'),
+                                            Divider(),
+                                          ],
                                         ),
-                                      ),
-                                      // Text('${state.allCollegesModel.data.list[index].name}'),
-                                      Divider(),
-                                    ],
-                                  ),
-                                );
-                              }),
-                        ),
+                                      );
+                                    })
+                                : Text('It has no data!')),
                       );
                     } else if (state2 is CollegesByRegionLoadingState ||
                         state2 is CollegesByRegionInitialState) {

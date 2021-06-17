@@ -32,7 +32,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
           providers: [
             BlocProvider<DetailOrderBloc>(
               create: (context) =>
-                  DetailOrderBloc()..add(DetailOrderGetEvent()),
+                  DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
             ),
             BlocProvider<MyOrdersBloc>(
               create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
