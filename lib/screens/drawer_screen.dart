@@ -4,12 +4,15 @@ import 'package:abiturient_app/screens/college_screen.dart';
 import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
+import 'package:abiturient_app/screens/push_notifications_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
+import 'package:abiturient_app/screens/settings_screen.dart';
+import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'guide_screen.dart';
+import 'about_app_screen.dart';
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -40,6 +43,8 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           Divider(
             color: Color(0xFF1269db),
+            indent: MediaQuery.of(context).size.width * 0.05,
+            endIndent: MediaQuery.of(context).size.width * 0.05,
           ),
           ListTile(
             leading: Icon(Icons.account_circle),
@@ -95,6 +100,12 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.assistant_navigation),
             title: Text('Специальности'),
             onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SpecialistsScreen(),
+                  ),
+                      (route) => false);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
@@ -142,6 +153,12 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.local_fire_department),
             title: Text('Уведомления'),
             onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PushNotificationScreen(),
+                  ),
+                      (route) => false);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
@@ -165,6 +182,12 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.settings),
             title: Text('Настройки'),
             onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsScreen(),
+                  ),
+                      (route) => false);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
@@ -175,7 +198,7 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => GuideScreen(),
+                    builder: (context) => AboutAppScreen(),
                   ),
                   (route) => false);
               // Navigator.push(
