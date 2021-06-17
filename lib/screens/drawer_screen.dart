@@ -5,21 +5,18 @@ import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
-import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import 'feedback_screen.dart';
 import 'guide_screen.dart';
 
-class MyHomeScreen extends StatefulWidget {
+class MyDrawer extends StatefulWidget {
   @override
-  _MyHomeScreenState createState() => _MyHomeScreenState();
+  _MyDrawerState createState() => _MyDrawerState();
 }
 
-class _MyHomeScreenState extends State<MyHomeScreen> {
+class _MyDrawerState extends State<MyDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -48,56 +45,97 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             leading: Icon(Icons.account_circle),
             title: Text('Мои заявки'),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => RequestsScreen()));
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => RequestsScreen(),
+                  ),
+                  (route) => false);
+              //  (context,
+              //     MaterialPageRoute(builder: (context) => RequestsScreen()));
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => RequestsScreen(),
+              //   ),
+              // );
             },
           ),
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Подать заявку'),
             onTap: () {
-              Navigator.push(
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ApplyRequestScreen()));
+                    builder: (context) => ApplyRequestScreen(),
+                  ),
+                  (route) => false);
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => ApplyRequestScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.location_on),
             title: Text('Колледжи'),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => CollegeScreen()));
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CollegeScreen(),
+                  ),
+                  (route) => false);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => CollegeScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.assistant_navigation),
             title: Text('Специальности'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => SpecialistsScreen()));
+              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.question_answer),
             title: Text('Вопросы-ответы'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => FaqScreen()));
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FaqScreen(),
+                  ),
+                  (route) => false);
             },
           ),
           ListTile(
             leading: Icon(Icons.all_inbox),
             title: Text('Новости и анонсы'),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => NewsScreen()));
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NewsScreen(),
+                  ),
+                  (route) => false);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => NewsScreen()));
             },
           ),
           ListTile(
             leading: Icon(Icons.message),
             title: Text('Виртуальный блог'),
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => VirtualBlogScreen()));
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => VirtualBlogScreen(),
+                  ),
+                  (route) => false);
+              // Navigator.push(context,
+              //     MaterialPageRoute(builder: (context) => VirtualBlogScreen()));
             },
           ),
           ListTile(
@@ -111,10 +149,16 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             leading: Icon(Icons.construction),
             title: Text('Проф. диагностика'),
             onTap: () {
-              Navigator.push(
+              Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => ProfDiagnosticScreen()));
+                    builder: (context) => ProfDiagnosticScreen(),
+                  ),
+                  (route) => false);
+              // Navigator.push(
+              //     context,
+              //     MaterialPageRoute(
+              //         builder: (context) => ProfDiagnosticScreen()));
             },
           ),
           ListTile(
@@ -128,16 +172,27 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             leading: Icon(Icons.app_blocking),
             title: Text('О приложении'),
             onTap: () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (newcontext) => BlocProvider<RegionsBloc>(
-                    create: (context) => RegionsBloc()..add(RegionsGetEvent()),
-                    child: GuideScreen(),
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => GuideScreen(),
                   ),
-                ),
-              );
+                  (route) => false);
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (newcontext) => GuideScreen(),
+              //   ),
+              // );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (newcontext) => BlocProvider<RegionsBloc>(
+              //       create: (context) => RegionsBloc()..add(RegionsGetEvent()),
+              //       child: GuideScreen(),
+              //     ),
+              //   ),
+              // );
             },
           ),
         ],

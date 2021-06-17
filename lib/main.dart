@@ -4,8 +4,9 @@ import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/models/detail_order_model.dart';
 import 'package:abiturient_app/screens/auth_screen.dart';
-import 'package:abiturient_app/screens/home_screen.dart';
+import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
+import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -54,7 +55,7 @@ class MyApp extends StatelessWidget {
             create: (context) => RegionsBloc()..add(RegionsGetEvent()),
           ),
         ],
-        child: AuthScreen(),
+        child: NewsScreen(),
         // LoginScreen(),
       ), // MyHomeScreen(),
     );

@@ -1,8 +1,8 @@
+import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ApplyRequestScreen extends StatefulWidget {
-
   @override
   _ApplyRequestScreenState createState() => _ApplyRequestScreenState();
 }
@@ -14,15 +14,17 @@ class _ApplyRequestScreenState extends State<ApplyRequestScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
-      body: MyRequestWidget(),
+      drawer: MyDrawer(),
+      body: Center(child: MyRequestWidget()),
     );
   }
 
   Widget MyRequestWidget() {
     return ElevatedButton(
-        onPressed: () => _launchURL(),
-        child: Text('Подать заявку'));
+        onPressed: () => _launchURL(), child: Text('Подать заявку'));
   }
 
-  void _launchURL() async => await canLaunch(_url) ? await launch(_url) : throw 'could not launch $_url';
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'could not launch $_url';
 }
