@@ -5,6 +5,7 @@ import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
+import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,8 @@ class _MyDrawerState extends State<MyDrawer> {
           ),
           Divider(
             color: Color(0xFF1269db),
+            indent: MediaQuery.of(context).size.width * 0.05,
+            endIndent: MediaQuery.of(context).size.width * 0.05,
           ),
           ListTile(
             leading: Icon(Icons.account_circle),
@@ -95,6 +98,12 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.assistant_navigation),
             title: Text('Специальности'),
             onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SpecialistsScreen(),
+                  ),
+                      (route) => false);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
