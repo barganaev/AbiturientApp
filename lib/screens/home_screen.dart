@@ -5,6 +5,7 @@ import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
+import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -73,7 +74,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             leading: Icon(Icons.assistant_navigation),
             title: Text('Специальности'),
             onTap: () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => SpecialistsScreen()));
             },
           ),
           ListTile(

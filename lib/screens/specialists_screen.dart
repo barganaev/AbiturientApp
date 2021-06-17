@@ -7,15 +7,15 @@ import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class GuideScreen extends StatefulWidget {
+class SpecialistsScreen extends StatefulWidget {
   List<Datum> list;
-  GuideScreen({this.list});
+  SpecialistsScreen({this.list});
 
   @override
-  _GuideScreenState createState() => _GuideScreenState();
+  _SpecialistsScreenState createState() => _SpecialistsScreenState();
 }
 
-class _GuideScreenState extends State<GuideScreen> {
+class _SpecialistsScreenState extends State<SpecialistsScreen> {
   String selectedRegion;
   int indexOfCity = 0;
   int _value = 1;
@@ -43,7 +43,7 @@ class _GuideScreenState extends State<GuideScreen> {
       key: _scaffoldState,
       appBar: PreferredSize(
           preferredSize:
-              Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
+          Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
           child: AppBarWidget(
             title: "Колледж",
           )),
@@ -53,7 +53,7 @@ class _GuideScreenState extends State<GuideScreen> {
             create: (context) => RegionsBloc()..add(RegionsGetEvent()),
           ),
           BlocProvider<CollegesByRegionBloc>(
-            create: (context) => CollegesByRegionBloc()),
+              create: (context) => CollegesByRegionBloc()),
         ],
         child: BlocBuilder<RegionsBloc, RegionsState>(
           builder: (context, state) {
@@ -70,7 +70,7 @@ class _GuideScreenState extends State<GuideScreen> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.only(left: 10),
                       decoration:
-                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                      BoxDecoration(border: Border.all(color: Colors.grey)),
                       child: DropdownButton(
                         isExpanded: true,
                         value: selectedRegion,
@@ -89,51 +89,51 @@ class _GuideScreenState extends State<GuideScreen> {
                         if (state2 is CollegesByRegionLoadedState) {
                           return Expanded(
                             child: Container(
-                              child: state2.collegesByRegionModel.data.list.isNotEmpty ?
-                              ListView.builder(
-                                // shrinkWrap: true,
-                                  itemCount: state2.collegesByRegionModel.data.list.length,
-                                  itemBuilder: (context, index) {
-                                    // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
-                                    return Container(
-                                      child: Column(
-                                        children: [
-                                          Padding(
-                                            padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
-                                            child: Container(
-                                              // color: Colors.red,
-                                              height: MediaQuery.of(context).size.height * 0.3,
-                                              child: Card(
-                                                semanticContainer: true,
-                                                clipBehavior: Clip.antiAliasWithSaveLayer,
-                                                child: Container(
-                                                  padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
-                                                  child: SingleChildScrollView(
-                                                    child: Column(
-                                                      children: [
-                                                        Text('${state2.collegesByRegionModel.data.list[index].bin}'),
-                                                        Text('${state2.collegesByRegionModel.data.list[index].name}'),
-                                                        Text('${state2.collegesByRegionModel.data.list[index].address}'),
-                                                        Text('${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
-                                                        Text('${state2.collegesByRegionModel.data.list[index].ownershipName}'),
-                                                      ],
+                                child: state2.collegesByRegionModel.data.list.isNotEmpty ?
+                                ListView.builder(
+                                  // shrinkWrap: true,
+                                    itemCount: state2.collegesByRegionModel.data.list.length,
+                                    itemBuilder: (context, index) {
+                                      // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
+                                      return Container(
+                                        child: Column(
+                                          children: [
+                                            Padding(
+                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
+                                              child: Container(
+                                                // color: Colors.red,
+                                                height: MediaQuery.of(context).size.height * 0.3,
+                                                child: Card(
+                                                  semanticContainer: true,
+                                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                  child: Container(
+                                                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
+                                                    child: SingleChildScrollView(
+                                                      child: Column(
+                                                        children: [
+                                                          Text('${state2.collegesByRegionModel.data.list[index].bin}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].name}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].address}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].ownershipName}'),
+                                                        ],
+                                                      ),
                                                     ),
                                                   ),
+                                                  shape: RoundedRectangleBorder(
+                                                    borderRadius: BorderRadius.circular(20),
+                                                  ),
+                                                  elevation: 10,
                                                 ),
-                                                shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(20),
-                                                ),
-                                                elevation: 10,
                                               ),
                                             ),
-                                          ),
-                                          // Text('${state.allCollegesModel.data.list[index].name}'),
-                                          Divider(),
-                                        ],
-                                      ),
-                                    );
-                                  }
-                              ) : Text('It has no data!')
+                                            // Text('${state.allCollegesModel.data.list[index].name}'),
+                                            Divider(),
+                                          ],
+                                        ),
+                                      );
+                                    }
+                                ) : Text('It has no data!')
                             ),
                           );
                         } else if (state2 is CollegesByRegionLoadingState || state2 is CollegesByRegionInitialState) {
