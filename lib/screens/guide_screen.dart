@@ -123,6 +123,10 @@ class _GuideScreenState extends State<GuideScreen> {
                                                         .size
                                                         .height *
                                                     0.3,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.8,
                                                 child: Card(
                                                   semanticContainer: true,
                                                   clipBehavior: Clip
@@ -139,29 +143,23 @@ class _GuideScreenState extends State<GuideScreen> {
                                                         SingleChildScrollView(
                                                       child: Column(
                                                         children: [
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].bin}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].name}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].address}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].bin}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].name}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].address}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                          Text('${state2.collegesByRegionModel.data.list[index].ownershipName}'),
                                                         ],
                                                       ),
                                                     ),
                                                   ),
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
+                                                    borderRadius: BorderRadius.circular(20),
                                                   ),
-                                                  elevation: 10,
+                                                  elevation: 2,
                                                 ),
                                               ),
                                             ),
+
                                             // Text('${state.allCollegesModel.data.list[index].name}'),
                                             Divider(),
                                           ],
