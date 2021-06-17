@@ -1,4 +1,4 @@
-import 'package:abiturient_app/screens/home_screen.dart';
+import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -12,12 +12,13 @@ class _NewsScreenState extends State<NewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-          preferredSize:
-              Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-          child: AppBarWidget(
-            title: "Новости",
-          )),
-      drawer: MyHomeScreen(),
+        preferredSize:
+            Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
+        child: AppBarWidget(
+          title: "Новости",
+        ),
+      ),
+      drawer: MyDrawer(),
       body: ListView.builder(
           itemCount: 100,
           itemBuilder: (context, index) {
