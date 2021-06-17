@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/models/regions_model.dart';
+import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -47,6 +48,7 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
           child: AppBarWidget(
             title: "Колледж",
           )),
+      drawer: MyDrawer(),
       body: MultiBlocProvider(
         providers: [
           BlocProvider<RegionsBloc>(
@@ -123,7 +125,7 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius: BorderRadius.circular(20),
                                                   ),
-                                                  elevation: 10,
+                                                  elevation: 2,
                                                 ),
                                               ),
                                             ),
@@ -142,11 +144,11 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                           );
                         } else if (state2 is CollegesByRegionErrorState) {
                           return Center(
-                            child: Text('look for guide_screen.dart'),
+                            child: Text('look for about_app_screen.dart'),
                           );
                         } else {
                           return Center(
-                            child: Text('Error in guide_screen.dart aaaa'),
+                            child: Text('Error in about_app_screen.dart aaaa'),
                           );
                         }
                       }
@@ -159,11 +161,11 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
               );
             } else if (state is RegionsErrorState) {
               return Center(
-                child: Text('look for guide_screen.dart eeeee'),
+                child: Text('look for about_app_screen.dart eeeee'),
               );
             } else {
               return Center(
-                child: Text('Error in guide_screen.dart eeeee'),
+                child: Text('Error in about_app_screen.dart eeeee'),
               );
             }
           },
