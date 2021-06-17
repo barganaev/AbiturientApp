@@ -10,12 +10,9 @@ import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'guide_screen.dart';
-=======
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'about_app_screen.dart';
->>>>>>> e961113f97d236fd559ee6e28dc989cafea43dbf
 
 class MyDrawer extends StatefulWidget {
   @override
