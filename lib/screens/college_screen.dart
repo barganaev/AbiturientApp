@@ -178,11 +178,11 @@ class _CollegeScreenState extends State<CollegeScreen> {
                       );
                     } else if (state2 is CollegesByRegionErrorState) {
                       return Center(
-                        child: Text('look for guide_screen.dart'),
+                        child: Text('look for about_app_screen.dart'),
                       );
                     } else {
                       return Center(
-                        child: Text('Error in guide_screen.dart aaaa'),
+                        child: Text('Error in about_app_screen.dart aaaa'),
                       );
                     }
                   }),
@@ -194,11 +194,11 @@ class _CollegeScreenState extends State<CollegeScreen> {
               );
             } else if (state is RegionsErrorState) {
               return Center(
-                child: Text('look for guide_screen.dart eeeee'),
+                child: Text('look for about_app_screen.dart eeeee'),
               );
             } else {
               return Center(
-                child: Text('Error in guide_screen.dart eeeee'),
+                child: Text('Error in about_app_screen.dart eeeee'),
               );
             }
           },

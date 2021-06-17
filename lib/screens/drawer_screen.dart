@@ -4,13 +4,15 @@ import 'package:abiturient_app/screens/college_screen.dart';
 import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
+import 'package:abiturient_app/screens/push_notifications_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
+import 'package:abiturient_app/screens/settings_screen.dart';
 import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'guide_screen.dart';
+import 'about_app_screen.dart';
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -151,6 +153,12 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.local_fire_department),
             title: Text('Уведомления'),
             onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => PushNotificationScreen(),
+                  ),
+                      (route) => false);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
@@ -174,6 +182,12 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.settings),
             title: Text('Настройки'),
             onTap: () {
+              Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SettingsScreen(),
+                  ),
+                      (route) => false);
               // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
             },
           ),
@@ -184,7 +198,7 @@ class _MyDrawerState extends State<MyDrawer> {
               Navigator.pushAndRemoveUntil(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => GuideScreen(),
+                    builder: (context) => AboutAppScreen(),
                   ),
                   (route) => false);
               // Navigator.push(
