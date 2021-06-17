@@ -1,4 +1,3 @@
-import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/screens/apply_request_screen.dart';
 import 'package:abiturient_app/screens/college_screen.dart';
 import 'package:abiturient_app/screens/faq_screen.dart';
@@ -8,7 +7,6 @@ import 'package:abiturient_app/screens/requests_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'guide_screen.dart';
 
 class MyDrawer extends StatefulWidget {

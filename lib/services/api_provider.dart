@@ -6,6 +6,7 @@ import 'package:abiturient_app/models/colleges_by_region_model.dart';
 import 'package:abiturient_app/models/login_model.dart';
 import 'package:abiturient_app/models/detail_order_model.dart';
 import 'package:abiturient_app/models/my_orders.dart';
+import 'package:abiturient_app/models/news_model.dart';
 import 'package:abiturient_app/models/regions_model.dart';
 import 'package:abiturient_app/utils/constants.dart';
 import 'package:hive/hive.dart';
@@ -18,6 +19,7 @@ enum RequestNames {
   allColleges,
   collegesByRegion,
   regions,
+  news,
 }
 //{{individual_p12}}
 
@@ -129,10 +131,32 @@ class ApiProvider {
       case RequestNames.collegesByRegion:
         try {
           final response = await http.get(
-            Uri.parse(COLLEGES_BY_REGION+ab),
+            Uri.parse(COLLEGES_BY_REGION + ab),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
+          );
+          // log(response.body.toString(), name: "COLLEGES_BY_REGION");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
+      case RequestNames.news:
+        try {
+          final response = await http.post(
+            Uri.parse(COLLEGES_BY_REGION + ab),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+            body: jsonEncode(
+              <String, String>{
+                'page': "1",
+                'lang': "kk",
+              },
+            ),
           );
           // log(response.body.toString(), name: "COLLEGES_BY_REGION");
           responseJson = _response(response, requestName);
@@ -181,6 +205,12 @@ class ApiProvider {
               name: "COLLEGES_BY_REGION");
 
           return _collegesByRegionModel;
+        } else if (requestname == RequestNames.news) {
+          // CollegesByRegionModel _collegesByRegionModel =
+          //     collegesByRegionModelFromJson(response.bodyBytes);
+          NewsModel _newsModel = newsModelFromJson(response.bodyBytes);
+          log(_newsModel.toJson().toString(), name: "RequestNames.news");
+          return _newsModel;
         }
         break;
       case 400:
