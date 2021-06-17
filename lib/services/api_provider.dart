@@ -28,6 +28,7 @@ class ApiProvider {
     RequestNames requestName, {
     String ecpFile,
     String password,
+    String ab,
   }) async {
     var responseJson;
 
@@ -128,7 +129,7 @@ class ApiProvider {
       case RequestNames.collegesByRegion:
         try {
           final response = await http.get(
-            Uri.parse(COLLEGES_BY_REGION),
+            Uri.parse(COLLEGES_BY_REGION+ab),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },

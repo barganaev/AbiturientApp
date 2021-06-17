@@ -7,7 +7,7 @@ const String DETAIL_ORDER =
 const String ALL_COLLEGES =
     "https://api.abiturient.edus.kz/v1/ru/public/college/list?limit=all";
 const String COLLEGES_BY_REGION =
-    "https://api.abiturient.edus.kz/v1/ru/public/college/list?limit=all&region_ab=47";
+    "https://api.abiturient.edus.kz/v1/ru/public/college/list?limit=all&region_ab=";
 const String REGIONS =
     "https://api.abiturient.edus.kz/v1/ru/public/region/list";
 
