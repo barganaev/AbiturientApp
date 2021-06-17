@@ -101,8 +101,9 @@ class _GuideScreenState extends State<GuideScreen> {
                                           Padding(
                                             padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
                                             child: Container(
-                                              // color: Colors.red,
+                                              color: Colors.red,
                                               height: MediaQuery.of(context).size.height * 0.3,
+                                              width: MediaQuery.of(context).size.width * 0.8,
                                               child: Card(
                                                 semanticContainer: true,
                                                 clipBehavior: Clip.antiAliasWithSaveLayer,
