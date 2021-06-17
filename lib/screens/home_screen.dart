@@ -1,6 +1,7 @@
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/screens/apply_request_screen.dart';
 import 'package:abiturient_app/screens/college_screen.dart';
+import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
@@ -79,7 +80,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
             leading: Icon(Icons.question_answer),
             title: Text('Вопросы-ответы'),
             onTap: () {
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => FaqScreen()));
             },
           ),
           ListTile(

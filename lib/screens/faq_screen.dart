@@ -17,7 +17,7 @@ class _FaqScreenState extends State<FaqScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Text('faq screen')
+            Text('faq screen'),
           ],
         ),
       ),
