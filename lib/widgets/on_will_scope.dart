@@ -4,21 +4,21 @@ Future<bool> willPopCallback(BuildContext context) async {
   return showDialog(
     context: context,
     builder: (context) => AlertDialog(
-      title: Text("My title"),
-      content: Text("This is my message."),
+      title: Text("Выход"),
+      content: Text("Вы уверены?"),
       actions: [
         TextButton(
           onPressed: () {
             Navigator.of(context).pop(false);
           },
-          child: Text("No"),
+          child: Text("Нет"),
         ),
         TextButton(
           onPressed: () {
             Navigator.of(context).pop(true);
             // return false;
           },
-          child: Text("Yes"),
+          child: Text("Да"),
         ),
       ],
     ),
