@@ -12,13 +12,7 @@ class _PushNotificationScreenState extends State<PushNotificationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-        Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        child: AppBarWidget(
-          title: "Уведомление",
-        ),
-      ),
+      appBar: appBarMy("Уведомление"),
       drawer: MyDrawer(),
       body: Center(
         child: Text('Push Notification screen'),

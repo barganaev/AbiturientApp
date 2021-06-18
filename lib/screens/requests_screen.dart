@@ -20,27 +20,28 @@ class _RequestsScreenState extends State<RequestsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        child: AppBarWidget(
-          title: "Мои заявки",
-        ),
-      ),
+      appBar: appBarMy("Мои заявки"),
+      // PreferredSize(
+      //   preferredSize:
+      //       Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
+      //   child: AppBarWidget(
+      //     title: "Мои заявки",
+      //   ),
+      // ),
       drawer: MyDrawer(),
       body: MultiBlocProvider(
           providers: [
-            BlocProvider<DetailOrderBloc>(
-              create: (context) =>
-                  DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
-            ),
+            // BlocProvider<DetailOrderBloc>(
+            //   create: (context) =>
+            //       DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
+            // ),
             BlocProvider<MyOrdersBloc>(
               create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
             ),
-            BlocProvider<AllCollegesBloc>(
-              create: (context) =>
-                  AllCollegesBloc()..add(AllCollegesGetEvent()),
-            ),
+            // BlocProvider<AllCollegesBloc>(
+            //   create: (context) =>
+            //       AllCollegesBloc()..add(AllCollegesGetEvent()),
+            // ),
           ],
           child: BlocBuilder<MyOrdersBloc, MyOrdersState>(
             builder: (context, state) {
@@ -62,11 +63,12 @@ class _RequestsScreenState extends State<RequestsScreen> {
                             child: InkWell(
                               onTap: () {
                                 Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                            DetailRequestScreen(
-                                                id: list[index].id)));
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        DetailRequestScreen(id: list[index].id),
+                                  ),
+                                );
                                 // BlocProvider.of<DetailOrderBloc>(context)
                                 //     .add(DetailOrderGetEvent());
                               },
@@ -204,15 +206,14 @@ class _RequestsScreenState extends State<RequestsScreen> {
                                                         .width *
                                                     0.04),
                                           ),
-                                          Text(
-                                            'parent_phone_number',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
+                                          Text('parent_phone_number',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.05)),
                                           Text(
                                             '${state.myOrdersModel.data.requestList.list[0].parentPhoneNumber}',
                                             style: TextStyle(

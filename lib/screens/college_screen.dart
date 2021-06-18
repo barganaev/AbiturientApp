@@ -19,7 +19,7 @@ class CollegeScreen extends StatefulWidget {
 
 class _CollegeScreenState extends State<CollegeScreen> {
   String selectedRegion;
-  int indexOfCity = 0;
+  int indexOfCity = 13;
   int _value = 1;
 
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
@@ -43,13 +43,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldState,
-      appBar: PreferredSize(
-        preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        child: AppBarWidget(
-          title: "Колледж",
-        ),
-      ),
+      appBar: appBarMy("Колледж"),
       drawer: MyDrawer(),
       body: MultiBlocProvider(
         providers: [

@@ -1,4 +1,5 @@
 import 'package:abiturient_app/screens/drawer_screen.dart';
+
 import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -14,13 +15,7 @@ class _ApplyRequestScreenState extends State<ApplyRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-        Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        child: AppBarWidget(
-          title: "Подать заявку",
-        ),
-      ),
+      appBar: AppBar(),
       drawer: MyDrawer(),
       body: Center(child: MyRequestWidget()),
     );

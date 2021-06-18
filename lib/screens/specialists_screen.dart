@@ -18,7 +18,7 @@ class SpecialistsScreen extends StatefulWidget {
 
 class _SpecialistsScreenState extends State<SpecialistsScreen> {
   String selectedRegion;
-  int indexOfCity = 0;
+  int indexOfCity = 13;
   int _value = 1;
 
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
@@ -42,12 +42,7 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldState,
-      appBar: PreferredSize(
-          preferredSize:
-          Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-          child: AppBarWidget(
-            title: "Специальности",
-          )),
+      appBar: appBarMy("Специальности"),
       drawer: MyDrawer(),
       body: MultiBlocProvider(
         providers: [
@@ -63,7 +58,9 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
               // selectedRegion = widget.list[indexOfCity].name;
               widget.list = state.regionsModel.data;
               selectedRegion = state.regionsModel.data[indexOfCity].name;
-              BlocProvider.of<CollegesByRegionBloc>(context).add(CollegesByRegionGetEvent(id: state.regionsModel.data[indexOfCity].ab));
+              BlocProvider.of<CollegesByRegionBloc>(context).add(
+                  CollegesByRegionGetEvent(
+                      id: state.regionsModel.data[indexOfCity].ab));
               return Column(
                 children: [
                   Align(
@@ -72,7 +69,7 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.only(left: 10),
                       decoration:
-                      BoxDecoration(border: Border.all(color: Colors.grey)),
+                          BoxDecoration(border: Border.all(color: Colors.grey)),
                       child: DropdownButton(
                         isExpanded: true,
                         value: selectedRegion,
@@ -88,42 +85,72 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                   ),
                   BlocBuilder<CollegesByRegionBloc, CollegesByRegionState>(
                       builder: (context, state2) {
-                        if (state2 is CollegesByRegionLoadedState) {
-                          return Expanded(
-                            child: Container(
-                                child: state2.collegesByRegionModel.data.list.isNotEmpty ?
-                                ListView.builder(
-                                  // shrinkWrap: true,
-                                    itemCount: state2.collegesByRegionModel.data.list.length,
+                    if (state2 is CollegesByRegionLoadedState) {
+                      return Expanded(
+                        child: Container(
+                            child: state2
+                                    .collegesByRegionModel.data.list.isNotEmpty
+                                ? ListView.builder(
+                                    // shrinkWrap: true,
+                                    itemCount: state2
+                                        .collegesByRegionModel.data.list.length,
                                     itemBuilder: (context, index) {
                                       // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
                                       return Container(
                                         child: Column(
                                           children: [
                                             Padding(
-                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.05, horizontal: MediaQuery.of(context).size.width * 0.1),
+                                              padding: EdgeInsets.symmetric(
+                                                  vertical:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.05,
+                                                  horizontal:
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.1),
                                               child: Container(
                                                 // color: Colors.red,
-                                                height: MediaQuery.of(context).size.height * 0.3,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.3,
                                                 child: Card(
                                                   semanticContainer: true,
-                                                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                                                  clipBehavior: Clip
+                                                      .antiAliasWithSaveLayer,
                                                   child: Container(
-                                                    padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.03),
-                                                    child: SingleChildScrollView(
+                                                    padding: EdgeInsets.symmetric(
+                                                        horizontal:
+                                                            MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.03),
+                                                    child:
+                                                        SingleChildScrollView(
                                                       child: Column(
                                                         children: [
-                                                          Text('${state2.collegesByRegionModel.data.list[index].bin}'),
-                                                          Text('${state2.collegesByRegionModel.data.list[index].name}'),
-                                                          Text('${state2.collegesByRegionModel.data.list[index].address}'),
-                                                          Text('${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
-                                                          Text('${state2.collegesByRegionModel.data.list[index].ownershipName}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].bin}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].name}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].address}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                          Text(
+                                                              '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
                                                         ],
                                                       ),
                                                     ),
                                                   ),
                                                   shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(20),
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20),
                                                   ),
                                                   elevation: 2,
                                                 ),
@@ -134,25 +161,24 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                           ],
                                         ),
                                       );
-                                    }
-                                ) : Text('It has no data!')
-                            ),
-                          );
-                        } else if (state2 is CollegesByRegionLoadingState || state2 is CollegesByRegionInitialState) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (state2 is CollegesByRegionErrorState) {
-                          return Center(
-                            child: Text('look for about_app_screen.dart'),
-                          );
-                        } else {
-                          return Center(
-                            child: Text('Error in about_app_screen.dart aaaa'),
-                          );
-                        }
-                      }
-                  ),
+                                    })
+                                : Text('It has no data!')),
+                      );
+                    } else if (state2 is CollegesByRegionLoadingState ||
+                        state2 is CollegesByRegionInitialState) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state2 is CollegesByRegionErrorState) {
+                      return Center(
+                        child: Text('look for about_app_screen.dart'),
+                      );
+                    } else {
+                      return Center(
+                        child: Text('Error in about_app_screen.dart aaaa'),
+                      );
+                    }
+                  }),
                 ],
               );
             } else if (state is RegionsLoadingState) {

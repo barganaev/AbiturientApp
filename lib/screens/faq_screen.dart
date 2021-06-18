@@ -11,13 +11,7 @@ class _FaqScreenState extends State<FaqScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        child: AppBarWidget(
-          title: "Вопросы и ответы",
-        ),
-      ),
+      appBar: appBarMy("Вопросы и ответы"),
       drawer: MyDrawer(),
       body: SingleChildScrollView(
         child: Column(
@@ -48,8 +42,6 @@ class _FaqScreenState extends State<FaqScreen> {
                 );
               }
             ),
-
-
             ExpansionTile(
               title: Text(
                 'items.playerName',

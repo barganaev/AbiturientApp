@@ -17,13 +17,7 @@ class _ProfDiagnosticScreenState extends State<ProfDiagnosticScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize:
-            Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        child: AppBarWidget(
-          title: "Проф. диагностика",
-        ),
-      ),
+      appBar: appBarMy("Проф. диагностика"),
       drawer: MyDrawer(),
       body: WebView(
         initialUrl: 'https://edunavigator.kz',
