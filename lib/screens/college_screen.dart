@@ -112,18 +112,22 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                       MediaQuery.of(context)
                                                               .size
                                                               .height *
-                                                          0.05,
+                                                          0.03,
                                                   horizontal:
                                                       MediaQuery.of(context)
                                                               .size
                                                               .width *
-                                                          0.1),
+                                                          0.05),
                                               child: Container(
                                                 // color: Colors.red,
                                                 height: MediaQuery.of(context)
                                                         .size
                                                         .height *
                                                     0.3,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.6,
                                                 child: Card(
                                                   semanticContainer: true,
                                                   clipBehavior: Clip
@@ -159,7 +163,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                         BorderRadius.circular(
                                                             20),
                                                   ),
-                                                  elevation: 10,
+                                                  elevation: 2,
                                                 ),
                                               ),
                                             ),

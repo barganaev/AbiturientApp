@@ -40,7 +40,7 @@ class _FaqScreenState extends State<FaqScreen> {
                         Divider(),
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01, horizontal: MediaQuery.of(context).size.width * 0.05),
-                          child: Text('This is a answer part as df asd fas dfasdf asd f', style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),),
+                          child: Text('This is a answer part as df asd fas dfasdf asd f', style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045, fontWeight: FontWeight.w300),),
                         ),
                       ],
                     ),
