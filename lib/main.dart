@@ -9,6 +9,8 @@ import 'package:abiturient_app/screens/intro_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/slid_screen.dart';
+import 'package:abiturient_app/screens/login_screen.dart';
+import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
@@ -36,7 +38,8 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(providers: [
         BlocProvider<DetailOrderBloc>(
           // lazy: false,
-          create: (context) => DetailOrderBloc()..add(DetailOrderGetEvent()),
+          create: (context) =>
+              DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
         ),
         BlocProvider<MyOrdersBloc>(
           // lazy: false,
