@@ -12,13 +12,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarMy("Настройки"),
-      // PreferredSize(
-      //   preferredSize:
-      //   Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-      //   child: AppBarWidget(
-      //     title: "Настройки",
-      //   ),
-      // ),
       drawer: MyDrawer(),
       body: Center(
         child: Text('Settings page'),

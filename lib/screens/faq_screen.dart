@@ -17,39 +17,31 @@ class _FaqScreenState extends State<FaqScreen> {
         child: Column(
           children: [
             ListView.builder(
-                shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                itemCount: 20,
-                itemBuilder: (context, index) {
-                  return Card(
-                    elevation: 2,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(5),
-                        topRight: Radius.circular(5),
-                      ),
-                      child: ExpansionTile(
-                        title: Text('This is a question part'),
-                        children: [
-                          Divider(),
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical:
-                                    MediaQuery.of(context).size.height * 0.01,
-                                horizontal:
-                                    MediaQuery.of(context).size.width * 0.05),
-                            child: Text(
-                              'This is a answer part as df asd fas dfasdf asd f',
-                              style: TextStyle(
-                                  fontSize:
-                                      MediaQuery.of(context).size.width * 0.05),
-                            ),
-                          ),
-                        ],
-                      ),
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: 20,
+              itemBuilder: (context, index) {
+                return Card(
+                  elevation: 2,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(5),
+                      topRight: Radius.circular(5),
                     ),
-                  );
-                }),
+                    child: ExpansionTile(
+                      title: Text('This is a question part'),
+                      children: [
+                        Divider(),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.01, horizontal: MediaQuery.of(context).size.width * 0.05),
+                          child: Text('This is a answer part as df asd fas dfasdf asd f', style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.045, fontWeight: FontWeight.w300),),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
+            ),
             ExpansionTile(
               title: Text(
                 'items.playerName',

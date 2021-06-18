@@ -8,20 +8,15 @@ class AboutAppScreen extends StatefulWidget {
 }
 
 class _AboutAppScreenState extends State<AboutAppScreen> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: appBarMy("О приложении"),
-        // PreferredSize(
-        //   preferredSize:
-        //   Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-        //   child: AppBarWidget(
-        //     title: "О приложении",
-        //   ),
-        // ),
-        drawer: MyDrawer(),
-        body: Center(
-          child: Text('About app screen'),
-        ));
+      appBar: appBarMy("О приложении"),
+      drawer: MyDrawer(),
+      body: Center(
+        child: Text('About app screen'),
+      ),
+    );
   }
 }

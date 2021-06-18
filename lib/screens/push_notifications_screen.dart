@@ -3,6 +3,7 @@ import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:flutter/material.dart';
 
 class PushNotificationScreen extends StatefulWidget {
+
   @override
   _PushNotificationScreenState createState() => _PushNotificationScreenState();
 }
