@@ -1,4 +1,5 @@
 import 'package:abiturient_app/blocs/all_colleges_bloc/all_colleges_bloc.dart';
+import 'package:abiturient_app/screens/college_detail_screen.dart';
 import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'dart:developer';
 
@@ -70,8 +71,9 @@ class _CollegeScreenState extends State<CollegeScreen> {
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.only(left: 10),
                       decoration:
-                          BoxDecoration(border: Border.all(color: Colors.grey)),
+                          BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(15)),
                       child: DropdownButton(
+                        underline: SizedBox(),
                         isExpanded: true,
                         value: selectedRegion,
                         items: state.regionsModel.data.map((Datum value) {
@@ -114,10 +116,10 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                           0.05),
                                               child: Container(
                                                 // color: Colors.red,
-                                                height: MediaQuery.of(context)
-                                                        .size
-                                                        .height *
-                                                    0.3,
+                                                // height: MediaQuery.of(context)
+                                                //         .size
+                                                //         .height *
+                                                //     0.3,
                                                 width: MediaQuery.of(context)
                                                         .size
                                                         .height *
@@ -135,22 +137,79 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                                     .width *
                                                                 0.03),
                                                     child:
-                                                        SingleChildScrollView(
-                                                      child: Column(
-                                                        children: [
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].bin}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].name}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].address}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
-                                                          Text(
-                                                              '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
-                                                        ],
-                                                      ),
-                                                    ),
+                                                        Column(
+                                                          children: [
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.width * 0.02),
+                                                              child: Image.network(
+                                                                  "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
+                                                                  fit: BoxFit.fill),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
+                                                              child: Text(
+                                                                  '${state2.collegesByRegionModel.data.list[index].name}',
+                                                                style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(Icons.house),
+                                                                  Flexible(
+                                                                    child: Padding(
+                                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
+                                                                      child: Text(
+                                                                          '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(Icons.location_on),
+                                                                  Flexible(
+                                                                    child: Padding(
+                                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
+                                                                      child: Text(
+                                                                          '${state2.collegesByRegionModel.data.list[index].address}'),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
+                                                              child: Row(
+                                                                children: [
+                                                                  Icon(Icons.phone),
+                                                                  Flexible(
+                                                                    child: Padding(
+                                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
+                                                                      child: Text(
+                                                                          '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                                    ),
+                                                                  ),
+                                                                ],
+                                                              ),
+                                                            ),
+                                                            Padding(
+                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.height * 0.02),
+                                                              child: Align(
+                                                                alignment: Alignment.bottomRight,
+                                                                child: ElevatedButton(
+                                                                  onPressed: (){
+                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => CollegeDetailScreen()));
+                                                                  },
+                                                                  child: Text('Подробнее')
+                                                                ),
+                                                              ),
+                                                            )
+                                                          ],
+                                                        ),
                                                   ),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
@@ -167,7 +226,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                         ),
                                       );
                                     })
-                                : Text('It has no data!')),
+                                : Center(child: Text('Нет Колледжей'))),
                       );
                     } else if (state2 is CollegesByRegionLoadingState ||
                         state2 is CollegesByRegionInitialState) {
