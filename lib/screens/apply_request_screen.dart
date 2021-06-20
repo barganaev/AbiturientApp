@@ -15,7 +15,7 @@ class _ApplyRequestScreenState extends State<ApplyRequestScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: appBarMy('Подать заявку'),
       drawer: MyDrawer(),
       body: Center(child: MyRequestWidget()),
     );
