@@ -31,9 +31,10 @@ class _MyDrawerState extends State<MyDrawer> {
                 vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               children: [
-                CircleAvatar(
-                  child: Icon(Icons.account_circle),
-                ),
+                Image.asset('assets/ico_mob_abiturient.png'),
+                // CircleAvatar(
+                //   child: Icon(Icons.account_circle),
+                // ),
                 Text(
                   'АБИТУРИЕНТ',
                   style: TextStyle(

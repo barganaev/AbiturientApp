@@ -58,8 +58,8 @@ class MyApp extends StatelessWidget {
             create: (context) => RegionsBloc()..add(RegionsGetEvent()),
           ),
         ],
-        child: this.isIntroSeen ? LoginScreen() : SlidersScreen(),
-        // LoginScreen()
+        // child: this.isIntroSeen ? LoginScreen() : SlidersScreen(),
+        child: LoginScreen()
         // NewsScreen(),
         // LoginScreen(),
       ), // MyHomeScreen(),
