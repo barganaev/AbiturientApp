@@ -28,6 +28,7 @@ class _NewsScreenState extends State<NewsScreen> {
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               if (state is NewsLoadedState) {
+                log(state.newsModel.data.body[0].image[0], name: "Image URL");
                 return ListView.builder(
                     itemCount: state.newsModel.data.body.length,
                     itemBuilder: (context, index) {
@@ -42,7 +43,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                 MaterialPageRoute(
                                     builder: (context) => NewsDetailScreen(title: state.newsModel.data.body[index].title,
                                                                             body: state.newsModel.data.body[index].body,
-                                                                             img: state.newsModel.data.body[index].image[index][0],
+                                                                             img: state.newsModel.data.body[index].image[index],
                                                                        createdAt: state.newsModel.data.body[index].createdAt.toString())));
                           },
                           child: Container(
@@ -54,7 +55,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                   child: Card(
                                     semanticContainer: true,
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    child: Image.asset('${state.newsModel.data.body[index].image[index][0]}')
+                                    child: Image.network('${state.newsModel.data.body[index].image[index]}')
                                     /*Image.network(
                                         "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
                                         fit: BoxFit.fitWidth)*/,
