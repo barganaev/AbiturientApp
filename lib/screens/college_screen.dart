@@ -149,18 +149,18 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                               padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
                                                               child: Text(
                                                                   '${state2.collegesByRegionModel.data.list[index].name}',
-                                                                style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),),
+                                                                style: TextStyle(color: Color(0xFF0c2e60), fontSize: MediaQuery.of(context).size.width * 0.05),),
                                                             ),
                                                             Padding(
                                                               padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
                                                               child: Row(
                                                                 children: [
-                                                                  Icon(Icons.house),
+                                                                  Icon(Icons.house, color: Color(0xFF0275d8),),
                                                                   Flexible(
                                                                     child: Padding(
                                                                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
                                                                       child: Text(
-                                                                          '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
+                                                                          '${state2.collegesByRegionModel.data.list[index].ownershipName}', style: TextStyle(color: Colors.grey[600]),),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -170,12 +170,12 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                               padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
                                                               child: Row(
                                                                 children: [
-                                                                  Icon(Icons.location_on),
+                                                                  Icon(Icons.location_on, color: Color(0xFF0275d8),),
                                                                   Flexible(
                                                                     child: Padding(
                                                                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
                                                                       child: Text(
-                                                                          '${state2.collegesByRegionModel.data.list[index].address}'),
+                                                                          '${state2.collegesByRegionModel.data.list[index].address}', style: TextStyle(fontWeight: FontWeight.w400, color: Colors.black),),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -185,12 +185,12 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                               padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
                                                               child: Row(
                                                                 children: [
-                                                                  Icon(Icons.phone),
+                                                                  Icon(Icons.phone, color: Color(0xFF0275d8),),
                                                                   Flexible(
                                                                     child: Padding(
                                                                       padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
                                                                       child: Text(
-                                                                          '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                                          '${state2.collegesByRegionModel.data.list[index].phoneNumber}', style: TextStyle(color: Colors.grey[600]),),
                                                                     ),
                                                                   ),
                                                                 ],
@@ -204,7 +204,10 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                                   onPressed: (){
                                                                     Navigator.push(context, MaterialPageRoute(builder: (context) => CollegeDetailScreen()));
                                                                   },
-                                                                  child: Text('Подробнее')
+                                                                  child: Text('Подробнее'),
+                                                                  style: ElevatedButton.styleFrom(
+                                                                    primary: Color(0xFF007bff)
+                                                                  ),
                                                                 ),
                                                               ),
                                                             )
