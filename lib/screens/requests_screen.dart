@@ -59,7 +59,7 @@ class _RequestsScreenState extends State<RequestsScreen> {
                                 vertical:
                                     MediaQuery.of(context).size.height * 0.05,
                                 horizontal:
-                                    MediaQuery.of(context).size.width * 0.1),
+                                    MediaQuery.of(context).size.width * 0.01),
                             child: InkWell(
                               onTap: () {
                                 Navigator.push(
@@ -72,267 +72,68 @@ class _RequestsScreenState extends State<RequestsScreen> {
                                 // BlocProvider.of<DetailOrderBloc>(context)
                                 //     .add(DetailOrderGetEvent());
                               },
-                              child: Container(
-                                // color: Colors.red,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                                child: Card(
-                                  semanticContainer: true,
-                                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal:
-                                            MediaQuery.of(context).size.width *
-                                                0.03),
-                                    child: SingleChildScrollView(
+                              child: ListView.builder(
+                                itemCount: state.myOrdersModel.data.requestList.list.length,
+                                physics: NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemBuilder: (context, index){
+                                  return Card(
+                                    elevation: 2,
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.only(
+                                        topLeft: Radius.circular(5),
+                                        topRight: Radius.circular(5),
+                                      ),
                                       child: Column(
                                         children: [
-                                          Text(
-                                            'id',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
+                                          ListTile(
+                                            title: Text(state.myOrdersModel.data.requestList.list[index].fullName.toString()
+                                                ?? "name"),
+                                            tileColor: Colors.grey[50],
                                           ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].id}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'iin',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].iin}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'full name',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].fullName}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'birthday',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].birthday}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'graduation year',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].graduationYear}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'email',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].email}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'phone_number',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].phoneNumber}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text('parent_phone_number',
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .width *
-                                                          0.05)),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].parentPhoneNumber}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'is_have_quota',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].isHaveQuota}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'chosed_qualification_count',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].choosedQualificationCount}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'created_at',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].createdAt}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'region_name',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].regionName}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'status_name',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].statusName}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
-                                          ),
-                                          Text(
-                                            'status_type',
-                                            style: TextStyle(
-                                                fontWeight: FontWeight.bold,
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.05),
-                                          ),
-                                          Text(
-                                            '${state.myOrdersModel.data.requestList.list[0].statusType}',
-                                            style: TextStyle(
-                                                fontSize: MediaQuery.of(context)
-                                                        .size
-                                                        .width *
-                                                    0.04),
+                                          ListView.builder(
+                                            physics: NeverScrollableScrollPhysics(),
+                                            shrinkWrap: true,
+                                            itemCount: //3,
+                                            state.myOrdersModel.data.requestList.list.length,
+                                            itemBuilder: (context, index2) {
+                                              // Map<String, dynamic> detailMap = allMap
+                                              //     .values
+                                              //     .elementAt(index)["values"];
+                                              return Column(
+                                                children: [
+                                                  Row(
+                                                    crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                          child: ListTile(
+                                                            title: Text(state.myOrdersModel.data.requestList.list[index].fullName.toString() ?? "NAME"),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                      Expanded(
+                                                        flex: 1,
+                                                        child: Container(
+                                                          child: ListTile(
+                                                            title: Text(state.myOrdersModel.data.requestList.list[index].fullName.toString() ?? "-"),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Divider(),
+                                                ],
+                                              );
+                                            },
                                           ),
                                         ],
                                       ),
                                     ),
-                                  ),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                  elevation: 10,
-                                ),
+                                  );
+                                },
                               ),
                             ),
                           );

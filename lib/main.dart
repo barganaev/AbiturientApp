@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           lazy: false,
           create: (context) => RegionsBloc()..add(RegionsGetEvent()),
         ),
-      ], child: Slidersdd()
+      ], child: LoginScreen()/*Slidersdd()*/
           // NewsScreen(),
           // LoginScreen(),
           ), // MyHomeScreen(),
