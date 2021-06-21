@@ -20,7 +20,6 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
           Column(
             children: [
               Container(
-                color: Colors.amber,
                 // height: MediaQuery.of(context).size.height * 0.3,
                 child: Image.network(
                   widget.img,

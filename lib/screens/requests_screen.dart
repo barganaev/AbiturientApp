@@ -5,10 +5,12 @@ import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/models/my_orders.dart';
 import 'package:abiturient_app/screens/detail_request_screen.dart';
 import 'package:abiturient_app/screens/drawer_screen.dart';
+import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/widgets/appbar_widget.dart';
 import 'package:abiturient_app/widgets/on_will_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class RequestsScreen extends StatefulWidget {
@@ -24,7 +26,33 @@ class _RequestsScreenState extends State<RequestsScreen> {
     return WillPopScope(
       onWillPop: () => willPopCallback(context),
       child: Scaffold(
-        appBar: appBarMy("Мои заявки"),
+        appBar: AppBar(
+          // leading: Icon(Icons.menu),
+          backgroundColor: Colors.white,
+          title: Text(
+            'Мои заявки',
+            style: TextStyle(color: Colors.black),
+          ),
+          centerTitle: true,
+          actions: [
+            IconButton(
+                icon: Icon(Icons.exit_to_app),
+                onPressed: () {
+                  var _box = Hive.box('myBox');
+                  if (_box.containsKey('token')) {
+                    _box.delete("token");
+                  }
+                  Navigator.pushAndRemoveUntil(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NewsScreen(),
+                      ),
+                      (route) => false);
+                })
+          ],
+          iconTheme: IconThemeData(color: Colors.black),
+        ),
+        // appBarMy("Мои заявки"),
         drawer: MyDrawer(),
         body: MultiBlocProvider(
             providers: [

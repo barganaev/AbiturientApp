@@ -28,6 +28,7 @@ class _NewsScreenState extends State<NewsScreen> {
           child: BlocBuilder<NewsBloc, NewsState>(
             builder: (context, state) {
               if (state is NewsLoadedState) {
+                log(state.newsModel.data.body[0].image[0], name: "Image URL");
                 return ListView.builder(
                     shrinkWrap: true,
                     itemCount: state.newsModel.data.body.length,

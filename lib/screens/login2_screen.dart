@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:abiturient_app/blocs/login_bloc/login_bloc.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
@@ -127,8 +128,10 @@ class _Login2ScreenState extends State<Login2Screen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          BlocProvider.of<LoginBloc>(context)
-              .add(LoginDoEvent(p12: ECP_FILE, password: "Qwerty12"));
+          log(this.img64, name: "base64");
+          log(_passwordController.text, name: "_passwordController");
+          BlocProvider.of<LoginBloc>(context).add(LoginDoEvent(
+              p12: this.img64, password: _passwordController.text));
 
           /// this.img  // pass controller text
         },
@@ -229,6 +232,16 @@ class _Login2ScreenState extends State<Login2Screen> {
                                 _buildLoginBtn(context),
                                 // _buildSignInWithText(),
                                 // _buildSignupBtn(),
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      "Назад",
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ))
                               ],
                             ),
                           ),

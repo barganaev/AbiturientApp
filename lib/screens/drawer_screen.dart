@@ -1,6 +1,7 @@
 import 'package:abiturient_app/screens/apply_request_screen.dart';
 import 'package:abiturient_app/screens/college_screen.dart';
 import 'package:abiturient_app/screens/faq_screen.dart';
+import 'package:abiturient_app/screens/login2_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
@@ -33,7 +34,10 @@ class _MyDrawerState extends State<MyDrawer> {
                 vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               children: [
-                Image.asset('assets/ico_mob_abiturient.png', width: MediaQuery.of(context).size.width * 0.3,),
+                Image.asset(
+                  'assets/ico_mob_abiturient.png',
+                  width: MediaQuery.of(context).size.width * 0.3,
+                ),
                 // CircleAvatar(
                 //   child: Icon(Icons.account_circle),
                 // ),
@@ -58,12 +62,11 @@ class _MyDrawerState extends State<MyDrawer> {
                     ),
                     (route) => false);
               } else {
-                Navigator.pushAndRemoveUntil(
+                Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoginScreen(),
-                    ),
-                    (route) => false);
+                      builder: (context) => Login2Screen(),
+                    ));
               }
               //  (context,
               //     MaterialPageRoute(builder: (context) => RequestsScreen()));
