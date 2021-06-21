@@ -24,6 +24,9 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         children: [
           Container(
+            color: Color(0xFF1269db),
+            child: Image.asset('assets/logo_edus_blue.png', height: MediaQuery.of(context).size.height * 0.05,)),
+          Container(
             padding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
@@ -34,6 +37,7 @@ class _MyDrawerState extends State<MyDrawer> {
                 Text(
                   'АБИТУРИЕНТ',
                   style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.045,
                       fontWeight: FontWeight.bold, color: Color(0xFF1269db)),
                 )
               ],
