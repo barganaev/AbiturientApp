@@ -211,12 +211,6 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                           ],
                                                         ),
                                                   ),
-                                                  shape: RoundedRectangleBorder(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20),
-                                                  ),
-                                                  elevation: 2,
                                                 ),
                                               ),
                                             ),
