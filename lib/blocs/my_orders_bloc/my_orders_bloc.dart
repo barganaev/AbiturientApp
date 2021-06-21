@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:abiturient_app/models/my_orders.dart';
 import 'package:abiturient_app/services/api_provider.dart';
@@ -20,6 +21,7 @@ class MyOrdersBloc extends Bloc<MyOrdersEvent, MyOrdersState> {
             await ApiProvider().requestPost(RequestNames.myOrders);
         yield MyOrdersLoadedState(myOrdersModel: _myOrdersModel);
       } catch (e) {
+        log(e.toString(), name: "eron don don");
         yield MyOrdersErrorState();
       }
     }

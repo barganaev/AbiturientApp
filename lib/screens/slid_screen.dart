@@ -1,42 +1,19 @@
+import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
+import 'package:hive/hive.dart';
 
-class Slidersdd extends StatefulWidget {
-  final String lang;
-
-  Slidersdd({this.lang});
-
+class SlidersScreen extends StatefulWidget {
   @override
-  _SlidersddState createState() => _SlidersddState();
+  _SlidersScreenState createState() => _SlidersScreenState();
 }
 
-class _SlidersddState extends State<Slidersdd> {
+class _SlidersScreenState extends State<SlidersScreen> {
   double screenHeight;
   double screenWidth;
 
   Map<int, Map<String, String>> _welcomeText;
-
-  final _welcomeTextKaz = {
-    1: {
-      'text': ' ',
-      'description':
-          'Широкий выбор специальностей технического и профессионального образования',
-      'img': 'assets/img_silder_1.png',
-    },
-    2: {
-      'text': ' ',
-      'description':
-          'Возможность подачи заявки на поступление в колледж в режиме онлайн',
-      'img': 'assets/img_silder_2.png',
-    },
-    3: {
-      'text': ' ',
-      'description':
-          'Много полезной информации и анонсов для правильного выбора профессии',
-      'img': 'assets/img_silder_3.png',
-    },
-  };
 
   final _welcomeTextRus = {
     1: {
@@ -58,10 +35,8 @@ class _SlidersddState extends State<Slidersdd> {
       'img': 'assets/img_silder_3.png',
     },
   };
-  String next;
-  String pass;
+
   String buttonText;
-  int curIndex = 0;
 
   int _current = 0;
   CarouselController sliderController = CarouselController();
@@ -70,17 +45,8 @@ class _SlidersddState extends State<Slidersdd> {
   @override
   void initState() {
     super.initState();
-    if (widget.lang == 'kaz') {
-      _welcomeText = _welcomeTextKaz;
-      next = "Келесі";
-      pass = "Өткізу";
-      buttonText = "Бастау";
-    } else {
-      _welcomeText = _welcomeTextRus;
-      next = "Следующая";
-      pass = "Пропустить";
-      buttonText = "Старт";
-    }
+    _welcomeText = _welcomeTextRus;
+    buttonText = "Старт";
   }
 
   List<T> map<T>(Map map, Function handler) {
@@ -114,31 +80,27 @@ class _SlidersddState extends State<Slidersdd> {
                     CarouselSlider(
                       carouselController: sliderController,
                       options: CarouselOptions(
-                          onPageChanged: (index, reason) {
-                            setState(() {
-                              curIndex = index;
-                              _current = index;
-                            });
-                          },
-                          enableInfiniteScroll: false,
-                          height: screenHeight * 0.55,
-                          autoPlay: false,
-                          autoPlayInterval: Duration(seconds: 5),
-                          autoPlayAnimationDuration:
-                              Duration(milliseconds: 800),
-                          autoPlayCurve: Curves.fastOutSlowIn,
-                          viewportFraction: 1.0),
+                        onPageChanged: (index, reason) {
+                          setState(() {
+                            _current = index;
+                          });
+                        },
+                        enableInfiniteScroll: false,
+                        height: screenHeight * 0.55,
+                        autoPlay: false,
+                        autoPlayInterval: Duration(seconds: 5),
+                        autoPlayAnimationDuration: Duration(milliseconds: 800),
+                        autoPlayCurve: Curves.fastOutSlowIn,
+                        viewportFraction: 1.0,
+                      ),
                       items: _welcomeText.keys.map((i) {
                         return Builder(
                           builder: (BuildContext context) {
                             return Column(
                               children: <Widget>[
-                                Padding(
-                                  padding: EdgeInsets.only(top: 0),
-                                  child: Container(
-                                    height: screenHeight * 0.3,
-                                    child: Image.asset(_welcomeText[i]['img']),
-                                  ),
+                                Container(
+                                  height: screenHeight * 0.3,
+                                  child: Image.asset(_welcomeText[i]['img']),
                                 ),
                                 Padding(
                                   padding: EdgeInsets.only(
@@ -150,11 +112,16 @@ class _SlidersddState extends State<Slidersdd> {
                                     _welcomeText[i]['description'],
                                     overflow: TextOverflow.fade,
                                     style: TextStyle(
-                                        fontSize: screenWidth * 0.06,
-                                        fontWeight: FontWeight.w300),
+                                      fontSize: screenWidth * 0.06,
+                                      fontWeight: FontWeight.w300,
+                                    ),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
+                                // Container(
+                                //   height: screenWidth * 0.08,
+                                //   color: Colors.yellow,
+                                // ),
                                 SizedBox(
                                   height: screenWidth * 0.08,
                                 ),
@@ -176,13 +143,13 @@ class _SlidersddState extends State<Slidersdd> {
                                               BorderRadius.circular(10.0),
                                         ),
                                         onPressed: () async {
-                                          // print(s);
-                                          // shared.saveBool('seenIntro', true);
+                                          var _box = Hive.box('myBox');
+                                          _box.put('isIntroSeen', true);
                                           Navigator.pushAndRemoveUntil(
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    NewsScreen(),
+                                                    LoginScreen(),
                                               ),
                                               (route) => false);
                                         },
