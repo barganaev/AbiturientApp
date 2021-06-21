@@ -6,8 +6,8 @@ import 'package:abiturient_app/services/api_provider.dart';
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
-part 'orders_event.dart';
-part 'orders_state.dart';
+part 'detail_orders_event.dart';
+part 'detail_orders_state.dart';
 
 class DetailOrderBloc extends Bloc<DetailOrderEvent, DetailOrderState> {
   DetailOrderBloc() : super(DetailOrderInitialState());
@@ -17,11 +17,17 @@ class DetailOrderBloc extends Bloc<DetailOrderEvent, DetailOrderState> {
     if (event is DetailOrderGetEvent) {
       yield DetailOrderLoadingState();
       try {
-        log("STarting orders");
-        DetailOrderModel _myOrdersModel =
+        log("RequestNames.detailOrder");
+        dynamic _myOrdersModel =
             await ApiProvider().requestPost(RequestNames.detailOrder);
-        yield DetailOrderLoadedState(detailOrderModel: _myOrdersModel);
+        // log(_myOrdersModel.toString(), name: "_myOrdersModel.toString");
+        // Map<String, dynamic> blockJson = _myOrdersModel["data"] ?? null;
+        // log(_myOrdersModel.toString(),
+        //     name: "_myOrdersModel.toString.toString");
+        // Map<String, dynamic> dataJson = _myOrdersModel["data"] ?? null;
+        yield DetailOrderLoadedState(jsonData: _myOrdersModel);
       } catch (e) {
+        log(e.toString(), name: "error");
         yield DetailOrderErrorState();
       }
     }

@@ -118,13 +118,14 @@ class _SlidersScreenState extends State<SlidersScreen> {
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
+                                Spacer(),
                                 // Container(
                                 //   height: screenWidth * 0.08,
                                 //   color: Colors.yellow,
                                 // ),
-                                SizedBox(
-                                  height: screenWidth * 0.08,
-                                ),
+                                // SizedBox(
+                                //   height: screenWidth * 0.08,
+                                // ),
                                 (i == _welcomeText.length)
                                     ? RaisedButton(
                                         padding: EdgeInsets.symmetric(
@@ -149,7 +150,7 @@ class _SlidersScreenState extends State<SlidersScreen> {
                                               context,
                                               MaterialPageRoute(
                                                 builder: (context) =>
-                                                    LoginScreen(),
+                                                    NewsScreen(),
                                               ),
                                               (route) => false);
                                         },

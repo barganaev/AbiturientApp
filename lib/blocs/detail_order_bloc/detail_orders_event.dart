@@ -1,4 +1,4 @@
-part of 'orders_bloc.dart';
+part of 'detail_orders_bloc.dart';
 
 @immutable
 abstract class DetailOrderEvent {}

@@ -21,7 +21,6 @@ enum RequestNames {
   regions,
   news,
 }
-//{{individual_p12}}
 
 class ApiProvider {
   var _token;
@@ -71,6 +70,7 @@ class ApiProvider {
               'X-Auth': _token,
             },
           );
+          log(response.statusCode.toString(), name: "Status");
           log(response.body.toString(), name: "dataBody");
           responseJson = _response(response, requestName);
         } catch (e) {
@@ -88,7 +88,7 @@ class ApiProvider {
               'X-Auth': _token,
             },
           );
-          log(response.body.toString(), name: "dataBody");
+          // log(response.body.toString(), name: "dataBody");
           responseJson = _response(response, requestName);
         } catch (e) {
           log(e.toString());
@@ -120,7 +120,7 @@ class ApiProvider {
               'Content-Type': 'application/json; charset=UTF-8',
             },
           );
-          // log(response.body.toString(), name: "REGIONS");
+          log(response.body.toString(), name: "REGIONS");
           responseJson = _response(response, requestName);
         } catch (e) {
           log(e.toString());
@@ -182,20 +182,26 @@ class ApiProvider {
           LoginModel _loginModel = loginModelFromJson(response.body);
           return _loginModel;
         } else if (requestname == RequestNames.detailOrder) {
-          DetailOrderModel _detailOrderModel =
-              detailOrderModelFromJson(response.bodyBytes);
-          return _detailOrderModel;
+          // DetailOrderModel _detailOrderModel =
+          //     detailOrderModelFromJson(response.bodyBytes);
+          String res = utf8.decode(response.bodyBytes);
+          return res;
         } else if (requestname == RequestNames.myOrders) {
-          MyOrdersModel _myOrdersModel =
-              myOrdersModelFromJson(response.bodyBytes);
-          return _myOrdersModel;
+          // MyOrdersModel _myOrdersModel =
+          //     myOrdersModelFromJson(response.bodyBytes);
+          String res = utf8.decode(response.bodyBytes);
+          // dynamic res = json.decode(utf8.decode(response.bodyBytes)));
+          // log(res.toString(), name: "RequestNames.myOrders");
+
+          return res;
+          // return _myOrdersModel;
         } else if (requestname == RequestNames.allColleges) {
           AllCollegesModel _allCollegesModel =
               allCollegesModelFromJson(response.bodyBytes);
           return _allCollegesModel;
         } else if (requestname == RequestNames.regions) {
           RegionsModel _regionsModel = regionsModelFromJson(response.bodyBytes);
-          log(_regionsModel.toJson().toString(), name: "COLLEGES_BY_REGION");
+          log(_regionsModel.toJson().toString(), name: "regions");
 
           return _regionsModel;
         } else if (requestname == RequestNames.collegesByRegion) {

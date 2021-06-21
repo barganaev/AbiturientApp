@@ -1,4 +1,4 @@
-part of 'orders_bloc.dart';
+part of 'detail_orders_bloc.dart';
 
 @immutable
 abstract class DetailOrderState {}
@@ -6,8 +6,9 @@ abstract class DetailOrderState {}
 class DetailOrderInitialState extends DetailOrderState {}
 
 class DetailOrderLoadedState extends DetailOrderState {
-  DetailOrderModel detailOrderModel;
-  DetailOrderLoadedState({this.detailOrderModel});
+  // DetailOrderModel detailOrderModel;
+  dynamic jsonData;
+  DetailOrderLoadedState({this.jsonData});
 }
 
 class DetailOrderLoadingState extends DetailOrderState {}

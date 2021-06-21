@@ -20,7 +20,7 @@ class SpecialistsScreen extends StatefulWidget {
 
 class _SpecialistsScreenState extends State<SpecialistsScreen> {
   String selectedRegion;
-  int indexOfCity = 13;
+  int indexOfCity = 0;
   int _value = 1;
 
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
@@ -70,8 +70,9 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.only(left: 10),
-                      decoration:
-                      BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(15)),
                       child: DropdownButton(
                         underline: SizedBox(),
                         isExpanded: true,
@@ -88,13 +89,13 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                   ),
                   BlocBuilder<CollegesByRegionBloc, CollegesByRegionState>(
                       builder: (context, state2) {
-                        if (state2 is CollegesByRegionLoadedState) {
-                          return Expanded(
-                            child: Container(
-                                child: state2
+                    if (state2 is CollegesByRegionLoadedState) {
+                      return Expanded(
+                        child: Container(
+                            child: state2
                                     .collegesByRegionModel.data.list.isNotEmpty
-                                    ? ListView.builder(
-                                  // shrinkWrap: true,
+                                ? ListView.builder(
+                                    // shrinkWrap: true,
                                     itemCount: state2
                                         .collegesByRegionModel.data.list.length,
                                     itemBuilder: (context, index) {
@@ -105,15 +106,15 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                             Padding(
                                               padding: EdgeInsets.symmetric(
                                                   vertical:
-                                                  MediaQuery.of(context)
-                                                      .size
-                                                      .height *
-                                                      0.03,
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .height *
+                                                          0.03,
                                                   horizontal:
-                                                  MediaQuery.of(context)
-                                                      .size
-                                                      .width *
-                                                      0.05),
+                                                      MediaQuery.of(context)
+                                                              .size
+                                                              .width *
+                                                          0.05),
                                               child: Container(
                                                 // color: Colors.red,
                                                 // height: MediaQuery.of(context)
@@ -121,8 +122,8 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                                 //         .height *
                                                 //     0.3,
                                                 width: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
+                                                        .size
+                                                        .height *
                                                     0.6,
                                                 child: Card(
                                                   semanticContainer: true,
@@ -131,34 +132,53 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                                   child: Container(
                                                     padding: EdgeInsets.symmetric(
                                                         horizontal:
-                                                        MediaQuery.of(
-                                                            context)
-                                                            .size
-                                                            .width *
-                                                            0.03),
-                                                    child:
-                                                    Column(
+                                                            MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.03),
+                                                    child: Column(
                                                       children: [
+                                                        // Padding(
+                                                        //   padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.width * 0.02),
+                                                        //   child: Image.network(
+                                                        //       "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
+                                                        //       fit: BoxFit.fill),
+                                                        // ),
                                                         Padding(
-                                                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.width * 0.02),
-                                                          child: Image.network(
-                                                              "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
-                                                              fit: BoxFit.fill),
-                                                        ),
-                                                        Padding(
-                                                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.02),
                                                           child: Text(
                                                             '${state2.collegesByRegionModel.data.list[index].name}',
-                                                            style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),),
+                                                            style: TextStyle(
+                                                                fontSize: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.05),
+                                                          ),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.005),
                                                           child: Row(
                                                             children: [
                                                               Icon(Icons.house),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
+                                                                  padding: EdgeInsets.only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.02),
                                                                   child: Text(
                                                                       '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
                                                                 ),
@@ -167,13 +187,23 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.005),
                                                           child: Row(
                                                             children: [
-                                                              Icon(Icons.location_on),
+                                                              Icon(Icons
+                                                                  .location_on),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
+                                                                  padding: EdgeInsets.only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.03),
                                                                   child: Text(
                                                                       '${state2.collegesByRegionModel.data.list[index].address}'),
                                                                 ),
@@ -182,13 +212,22 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.005),
                                                           child: Row(
                                                             children: [
                                                               Icon(Icons.phone),
                                                               Flexible(
                                                                 child: Padding(
-                                                                  padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
+                                                                  padding: EdgeInsets.only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.02),
                                                                   child: Text(
                                                                       '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
                                                                 ),
@@ -197,24 +236,42 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                                           ),
                                                         ),
                                                         Padding(
-                                                          padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.height * 0.02),
-                                                          child: Align(
-                                                            alignment: Alignment.bottomRight,
-                                                            child: ElevatedButton(
-                                                                onPressed: (){
-                                                                  Navigator.push(context, MaterialPageRoute(builder: (context) => CollegeDetailScreen()));
-                                                                },
-                                                                child: Text('Подробнее')
-                                                            ),
-                                                          ),
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.02,
+                                                              horizontal:
+                                                                  MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.02),
+                                                          child: Container(),
+                                                          // Align(
+                                                          //   alignment: Alignment
+                                                          //       .bottomRight,
+                                                          //   child:
+                                                          //       ElevatedButton(
+                                                          //           onPressed:
+                                                          //               () {
+                                                          //             Navigator.push(
+                                                          //                 context,
+                                                          //                 MaterialPageRoute(
+                                                          //                     builder: (context) => CollegeDetailScreen()));
+                                                          //           },
+                                                          //           child: Text(
+                                                          //               'Подробнее')),
+                                                          // ),
                                                         )
                                                       ],
                                                     ),
                                                   ),
                                                   shape: RoundedRectangleBorder(
                                                     borderRadius:
-                                                    BorderRadius.circular(
-                                                        20),
+                                                        BorderRadius.circular(
+                                                            20),
                                                   ),
                                                   elevation: 2,
                                                 ),
@@ -226,23 +283,23 @@ class _SpecialistsScreenState extends State<SpecialistsScreen> {
                                         ),
                                       );
                                     })
-                                    : Center(child: Text('Нет Колледжей'))),
-                          );
-                        } else if (state2 is CollegesByRegionLoadingState ||
-                            state2 is CollegesByRegionInitialState) {
-                          return Center(
-                            child: CircularProgressIndicator(),
-                          );
-                        } else if (state2 is CollegesByRegionErrorState) {
-                          return Center(
-                            child: Text('look for about_app_screen.dart'),
-                          );
-                        } else {
-                          return Center(
-                            child: Text('Error in about_app_screen.dart aaaa'),
-                          );
-                        }
-                      }),
+                                : Center(child: Text('Нет Колледжей'))),
+                      );
+                    } else if (state2 is CollegesByRegionLoadingState ||
+                        state2 is CollegesByRegionInitialState) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (state2 is CollegesByRegionErrorState) {
+                      return Center(
+                        child: Text('look for about_app_screen.dart'),
+                      );
+                    } else {
+                      return Center(
+                        child: Text('Error in about_app_screen.dart aaaa'),
+                      );
+                    }
+                  }),
                 ],
               );
             } else if (state is RegionsLoadingState) {

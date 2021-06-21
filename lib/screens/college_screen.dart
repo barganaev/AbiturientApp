@@ -20,7 +20,7 @@ class CollegeScreen extends StatefulWidget {
 
 class _CollegeScreenState extends State<CollegeScreen> {
   String selectedRegion;
-  int indexOfCity = 13;
+  int indexOfCity = 0;
   int _value = 1;
 
   final GlobalKey<ScaffoldState> _scaffoldState = GlobalKey<ScaffoldState>();
@@ -49,10 +49,14 @@ class _CollegeScreenState extends State<CollegeScreen> {
       body: MultiBlocProvider(
         providers: [
           BlocProvider<RegionsBloc>(
-            create: (context) => RegionsBloc()..add(RegionsGetEvent()),
+            create: (context) => RegionsBloc()
+              ..add(
+                RegionsGetEvent(),
+              ),
           ),
           BlocProvider<CollegesByRegionBloc>(
-              create: (context) => CollegesByRegionBloc()),
+            create: (context) => CollegesByRegionBloc(),
+          ),
         ],
         child: BlocBuilder<RegionsBloc, RegionsState>(
           builder: (context, state) {
@@ -70,8 +74,9 @@ class _CollegeScreenState extends State<CollegeScreen> {
                     child: Container(
                       width: MediaQuery.of(context).size.width * 0.7,
                       padding: EdgeInsets.only(left: 10),
-                      decoration:
-                          BoxDecoration(border: Border.all(color: Colors.grey), borderRadius: BorderRadius.circular(15)),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.grey),
+                          borderRadius: BorderRadius.circular(15)),
                       child: DropdownButton(
                         underline: SizedBox(),
                         isExpanded: true,
@@ -136,80 +141,146 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                                     .size
                                                                     .width *
                                                                 0.03),
-                                                    child:
-                                                        Column(
-                                                          children: [
-                                                            Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.width * 0.02),
-                                                              child: Image.network(
-                                                                  "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
-                                                                  fit: BoxFit.fill),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02),
-                                                              child: Text(
-                                                                  '${state2.collegesByRegionModel.data.list[index].name}',
-                                                                style: TextStyle(fontSize: MediaQuery.of(context).size.width * 0.05),),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
-                                                              child: Row(
-                                                                children: [
-                                                                  Icon(Icons.house),
-                                                                  Flexible(
-                                                                    child: Padding(
-                                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
-                                                                      child: Text(
-                                                                          '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
-                                                              child: Row(
-                                                                children: [
-                                                                  Icon(Icons.location_on),
-                                                                  Flexible(
-                                                                    child: Padding(
-                                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.03),
-                                                                      child: Text(
-                                                                          '${state2.collegesByRegionModel.data.list[index].address}'),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.005),
-                                                              child: Row(
-                                                                children: [
-                                                                  Icon(Icons.phone),
-                                                                  Flexible(
-                                                                    child: Padding(
-                                                                      padding: EdgeInsets.only(left: MediaQuery.of(context).size.width * 0.02),
-                                                                      child: Text(
-                                                                          '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
-                                                                    ),
-                                                                  ),
-                                                                ],
-                                                              ),
-                                                            ),
-                                                            Padding(
-                                                              padding: EdgeInsets.symmetric(vertical: MediaQuery.of(context).size.height * 0.02, horizontal: MediaQuery.of(context).size.height * 0.02),
-                                                              child: Align(
-                                                                alignment: Alignment.bottomRight,
-                                                                child: ElevatedButton(
-                                                                  onPressed: (){
-                                                                    Navigator.push(context, MaterialPageRoute(builder: (context) => CollegeDetailScreen()));
-                                                                  },
-                                                                  child: Text('Подробнее')
+                                                    child: Column(
+                                                      children: [
+                                                        // Padding(
+                                                        //   padding: EdgeInsets.symmetric(
+                                                        //       vertical: MediaQuery.of(
+                                                        //                   context)
+                                                        //               .size
+                                                        //               .height *
+                                                        //           0.02,
+                                                        //       horizontal:
+                                                        //           MediaQuery.of(
+                                                        //                       context)
+                                                        //                   .size
+                                                        //                   .width *
+                                                        //               0.02),
+                                                        //   child: Image.network(
+                                                        //       "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
+                                                        //       fit: BoxFit.fill),
+                                                        // ),
+                                                        Padding(
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.02),
+                                                          child: Text(
+                                                            '${state2.collegesByRegionModel.data.list[index].name}',
+                                                            style: TextStyle(
+                                                                fontSize: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.05),
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.005),
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons.house),
+                                                              Flexible(
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.02),
+                                                                  child: Text(
+                                                                      '${state2.collegesByRegionModel.data.list[index].ownershipName}'),
                                                                 ),
                                                               ),
-                                                            )
-                                                          ],
+                                                            ],
+                                                          ),
                                                         ),
+                                                        Padding(
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.005),
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons
+                                                                  .location_on),
+                                                              Flexible(
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.03),
+                                                                  child: Text(
+                                                                      '${state2.collegesByRegionModel.data.list[index].address}'),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                          padding: EdgeInsets.symmetric(
+                                                              vertical: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .height *
+                                                                  0.005),
+                                                          child: Row(
+                                                            children: [
+                                                              Icon(Icons.phone),
+                                                              Flexible(
+                                                                child: Padding(
+                                                                  padding: EdgeInsets.only(
+                                                                      left: MediaQuery.of(context)
+                                                                              .size
+                                                                              .width *
+                                                                          0.02),
+                                                                  child: Text(
+                                                                      '${state2.collegesByRegionModel.data.list[index].phoneNumber}'),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        Padding(
+                                                            padding: EdgeInsets.symmetric(
+                                                                vertical: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.02,
+                                                                horizontal: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.02),
+                                                            child: Container()
+                                                            // Align(
+                                                            //     alignment: Alignment
+                                                            //         .bottomRight,
+                                                            //     child:
+                                                            //         ElevatedButton(
+                                                            //             onPressed:
+                                                            //                 () {
+                                                            //               Navigator.push(
+                                                            //                   context,
+                                                            //                   MaterialPageRoute(
+                                                            //                       builder: (context) => CollegeDetailScreen()));
+                                                            //             },
+                                                            //             child: Text(
+                                                            //                 'Подробнее')),
+                                                            //   ),
+                                                            )
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
                                               ),

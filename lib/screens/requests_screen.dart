@@ -1,5 +1,6 @@
-import 'package:abiturient_app/blocs/all_colleges_bloc/all_colleges_bloc.dart';
-import 'package:abiturient_app/blocs/detail_order_bloc/orders_bloc.dart';
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/models/my_orders.dart';
 import 'package:abiturient_app/screens/detail_request_screen.dart';
@@ -21,124 +22,141 @@ class _RequestsScreenState extends State<RequestsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBarMy("Мои заявки"),
-      // PreferredSize(
-      //   preferredSize:
-      //       Size.fromHeight(MediaQuery.of(context).size.height * 0.1),
-      //   child: AppBarWidget(
-      //     title: "Мои заявки",
-      //   ),
-      // ),
       drawer: MyDrawer(),
       body: MultiBlocProvider(
           providers: [
-            // BlocProvider<DetailOrderBloc>(
-            //   create: (context) =>
-            //       DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
-            // ),
             BlocProvider<MyOrdersBloc>(
               create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
             ),
-            // BlocProvider<AllCollegesBloc>(
-            //   create: (context) =>
-            //       AllCollegesBloc()..add(AllCollegesGetEvent()),
-            // ),
           ],
           child: BlocBuilder<MyOrdersBloc, MyOrdersState>(
             builder: (context, state) {
               if (state is MyOrdersLoadedState) {
-                return state.myOrdersModel.data.requestList.list.length == 0
+                // dynamic headerJson =
+                //     state.myOrdersJson['data']["requestList"]['headers'];
+                // dynamic listJson =
+                //     state.myOrdersJson['data']["requestList"]['list'];
+                // int r = state.myOrdersJson["status"];
+                final jsonData = jsonDecode(state.myOrdersJson);
+                List<dynamic> jsonHeadersList =
+                    jsonData["data"]['requestList']['headers'];
+                List<dynamic> jsonDataList =
+                    jsonData["data"]['requestList']['list'];
+
+                log(jsonHeadersList.toString(), name: "jsonHeadersList");
+                log(jsonDataList.toString(), name: "jsonDataList");
+                log(jsonDataList[0].toString(), name: "elementAtjsonListMap");
+                return jsonDataList.length == 0
                     ? MyRequestWidget()
-                    : ListView.builder(
-                        itemCount:
-                            state.myOrdersModel.data.requestList.list.length,
-                        itemBuilder: (context, index) {
-                          List<ListElementt> list =
-                              state.myOrdersModel.data.requestList.list;
-                          return Padding(
-                            padding: EdgeInsets.symmetric(
-                                vertical:
+                    : Padding(
+                        padding: EdgeInsets.only(
+                          left: MediaQuery.of(context).size.width * 0.01,
+                          right: MediaQuery.of(context).size.width * 0.01,
+                        ),
+                        child: ListView.builder(
+                          itemCount: jsonDataList.length,
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: EdgeInsets.only(
+                                bottom:
                                     MediaQuery.of(context).size.height * 0.05,
-                                horizontal:
-                                    MediaQuery.of(context).size.width * 0.01),
-                            child: InkWell(
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) =>
-                                        DetailRequestScreen(id: list[index].id),
+                              ),
+                              child: Card(
+                                elevation: 2,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(5),
+                                    topRight: Radius.circular(5),
                                   ),
-                                );
-                                // BlocProvider.of<DetailOrderBloc>(context)
-                                //     .add(DetailOrderGetEvent());
-                              },
-                              child: ListView.builder(
-                                itemCount: state.myOrdersModel.data.requestList.list.length,
-                                physics: NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemBuilder: (context, index){
-                                  return Card(
-                                    elevation: 2,
-                                    child: ClipRRect(
-                                      borderRadius: BorderRadius.only(
-                                        topLeft: Radius.circular(5),
-                                        topRight: Radius.circular(5),
-                                      ),
-                                      child: Column(
-                                        children: [
-                                          ListTile(
-                                            title: Text(state.myOrdersModel.data.requestList.list[index].fullName.toString()
-                                                ?? "name"),
-                                            tileColor: Colors.grey[50],
+                                  child: Column(
+                                    children: [
+                                      ListTile(
+                                        title: Text(
+                                          "Заявка #${index + 1}",
+                                          style: TextStyle(
+                                            // fontSize: 18,
+                                            fontWeight: FontWeight.bold,
                                           ),
-                                          ListView.builder(
-                                            physics: NeverScrollableScrollPhysics(),
-                                            shrinkWrap: true,
-                                            itemCount: //3,
-                                            state.myOrdersModel.data.requestList.list.length,
-                                            itemBuilder: (context, index2) {
-                                              // Map<String, dynamic> detailMap = allMap
-                                              //     .values
-                                              //     .elementAt(index)["values"];
-                                              return Column(
-                                                children: [
-                                                  Row(
-                                                    crossAxisAlignment:
+                                        ),
+                                        tileColor: Colors.grey[50],
+                                      ),
+                                      ListView.builder(
+                                        physics: NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: jsonHeadersList.length,
+                                        itemBuilder: (context, index2) {
+                                          return Column(
+                                            children: [
+                                              Row(
+                                                crossAxisAlignment:
                                                     CrossAxisAlignment.start,
-                                                    children: [
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                          child: ListTile(
-                                                            title: Text(state.myOrdersModel.data.requestList.list[index].fullName.toString() ?? "NAME"),
-                                                          ),
-                                                        ),
+                                                children: [
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      child: ListTile(
+                                                        title: Text(
+                                                            jsonHeadersList[
+                                                                    index2]
+                                                                ["text"]),
                                                       ),
-                                                      Expanded(
-                                                        flex: 1,
-                                                        child: Container(
-                                                          child: ListTile(
-                                                            title: Text(state.myOrdersModel.data.requestList.list[index].fullName.toString() ?? "-"),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
+                                                    ),
                                                   ),
-                                                  Divider(),
+                                                  Expanded(
+                                                    flex: 1,
+                                                    child: Container(
+                                                      child: ListTile(
+                                                        title: Text(
+                                                          jsonDataList[index][
+                                                              jsonHeadersList[
+                                                                      index2]
+                                                                  ["value"]],
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ],
+                                              ),
+                                              Divider(),
+                                            ],
+                                          );
+                                        },
+                                      ),
+                                      Row(
+                                        children: [
+                                          Spacer(),
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      DetailRequestScreen(
+                                                    id: "1",
+                                                    // jsonDataList[index]
+                                                    //     ["id"],
+                                                  ),
+                                                ),
                                               );
                                             },
+                                            child: Text("Подробнее"),
                                           ),
+                                          Spacer(),
                                         ],
                                       ),
-                                    ),
-                                  );
-                                },
+                                      SizedBox(
+                                        height: 10,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
-                            ),
-                          );
-                        },
+                            );
+                          },
+                        ),
                       );
+             
               } else if (state is MyOrdersLoadingState) {
                 return Center(
                   child: CircularProgressIndicator(),

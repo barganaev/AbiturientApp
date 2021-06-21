@@ -1,6 +1,7 @@
 import 'package:abiturient_app/blocs/login_bloc/login_bloc.dart';
 import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
+import 'package:abiturient_app/screens/requests_screen.dart';
 import 'package:abiturient_app/utils/constants.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (contex) => NewsScreen()/*MyHomeScreen()*/,
+                    builder: (contex) => RequestsScreen() /*MyHomeScreen()*/,
                   ),
                 );
               }

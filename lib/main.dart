@@ -3,13 +3,14 @@ import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_
 import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
+import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/slid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path_provider;
 
-import 'blocs/detail_order_bloc/orders_bloc.dart';
+import 'blocs/detail_order_bloc/detail_orders_bloc.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       home: MultiBlocProvider(
         providers: [
           BlocProvider<DetailOrderBloc>(
-            // lazy: false,
+            lazy: false,
             create: (context) =>
                 DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
           ),
@@ -58,7 +59,7 @@ class MyApp extends StatelessWidget {
             create: (context) => RegionsBloc()..add(RegionsGetEvent()),
           ),
         ],
-        child: this.isIntroSeen ? LoginScreen() : SlidersScreen(),
+        child: this.isIntroSeen ? NewsScreen() : SlidersScreen(),
         // LoginScreen()
         // NewsScreen(),
         // LoginScreen(),

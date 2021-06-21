@@ -17,9 +17,9 @@ class MyOrdersBloc extends Bloc<MyOrdersEvent, MyOrdersState> {
     if (event is MyOrdersGetEvent) {
       yield MyOrdersLoadingState();
       try {
-        MyOrdersModel _myOrdersModel =
+        dynamic _myOrdersModel =
             await ApiProvider().requestPost(RequestNames.myOrders);
-        yield MyOrdersLoadedState(myOrdersModel: _myOrdersModel);
+        yield MyOrdersLoadedState(myOrdersJson: _myOrdersModel);
       } catch (e) {
         log(e.toString(), name: "eron don don");
         yield MyOrdersErrorState();

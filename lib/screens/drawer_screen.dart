@@ -1,6 +1,7 @@
 import 'package:abiturient_app/screens/apply_request_screen.dart';
 import 'package:abiturient_app/screens/college_screen.dart';
 import 'package:abiturient_app/screens/faq_screen.dart';
+import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
 import 'package:abiturient_app/screens/push_notifications_screen.dart';
@@ -10,6 +11,7 @@ import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
 import 'about_app_screen.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -24,8 +26,11 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         children: [
           Container(
-            color: Color(0xFF1269db),
-            child: Image.asset('assets/logo_edus_blue.png', height: MediaQuery.of(context).size.height * 0.05,)),
+              color: Color(0xFF1269db),
+              child: Image.asset(
+                'assets/logo_edus_blue.png',
+                height: MediaQuery.of(context).size.height * 0.05,
+              )),
           Container(
             padding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).size.height * 0.02),
@@ -37,8 +42,9 @@ class _MyDrawerState extends State<MyDrawer> {
                 Text(
                   'АБИТУРИЕНТ',
                   style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.045,
-                      fontWeight: FontWeight.bold, color: Color(0xFF1269db)),
+                      fontSize: MediaQuery.of(context).size.width * 0.045,
+                      fontWeight: FontWeight.bold,
+                      color: Color(0xFF1269db)),
                 )
               ],
             ),
@@ -52,12 +58,22 @@ class _MyDrawerState extends State<MyDrawer> {
             leading: Icon(Icons.account_circle),
             title: Text('Мои заявки'),
             onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => RequestsScreen(),
-                  ),
-                  (route) => false);
+              var _box = Hive.box('myBox');
+              if (_box.containsKey('token')) {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => RequestsScreen(),
+                    ),
+                    (route) => false);
+              } else {
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoginScreen(),
+                    ),
+                    (route) => false);
+              }
               //  (context,
               //     MaterialPageRoute(builder: (context) => RequestsScreen()));
               // Navigator.push(
@@ -151,19 +167,19 @@ class _MyDrawerState extends State<MyDrawer> {
               //     MaterialPageRoute(builder: (context) => VirtualBlogScreen()));
             },
           ),
-          ListTile(
-            leading: Icon(Icons.local_fire_department),
-            title: Text('Уведомления'),
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => PushNotificationScreen(),
-                  ),
-                  (route) => false);
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.local_fire_department),
+          //   title: Text('Уведомления'),
+          //   onTap: () {
+          //     Navigator.pushAndRemoveUntil(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => PushNotificationScreen(),
+          //         ),
+          //         (route) => false);
+          //     // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
+          //   },
+          // ),
           ListTile(
             leading: Icon(Icons.construction),
             title: Text('Проф. диагностика'),
@@ -180,46 +196,46 @@ class _MyDrawerState extends State<MyDrawer> {
               //         builder: (context) => ProfDiagnosticScreen()));
             },
           ),
-          ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Настройки'),
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SettingsScreen(),
-                  ),
-                  (route) => false);
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
-            },
-          ),
-          ListTile(
-            leading: Icon(Icons.app_blocking),
-            title: Text('О приложении'),
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AboutAppScreen(),
-                  ),
-                  (route) => false);
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (newcontext) => GuideScreen(),
-              //   ),
-              // );
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (newcontext) => BlocProvider<RegionsBloc>(
-              //       create: (context) => RegionsBloc()..add(RegionsGetEvent()),
-              //       child: GuideScreen(),
-              //     ),
-              //   ),
-              // );
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.settings),
+          //   title: Text('Настройки'),
+          //   onTap: () {
+          //     Navigator.pushAndRemoveUntil(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => SettingsScreen(),
+          //         ),
+          //         (route) => false);
+          //     // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
+          //   },
+          // ),
+          // ListTile(
+          //   leading: Icon(Icons.app_blocking),
+          //   title: Text('О приложении'),
+          //   onTap: () {
+          //     Navigator.pushAndRemoveUntil(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => AboutAppScreen(),
+          //         ),
+          //         (route) => false);
+          //     // Navigator.push(
+          //     //   context,
+          //     //   MaterialPageRoute(
+          //     //     builder: (newcontext) => GuideScreen(),
+          //     //   ),
+          //     // );
+          //     // Navigator.push(
+          //     //   context,
+          //     //   MaterialPageRoute(
+          //     //     builder: (newcontext) => BlocProvider<RegionsBloc>(
+          //     //       create: (context) => RegionsBloc()..add(RegionsGetEvent()),
+          //     //       child: GuideScreen(),
+          //     //     ),
+          //     //   ),
+          //     // );
+          //   },
+          // ),
         ],
       ),
     );
