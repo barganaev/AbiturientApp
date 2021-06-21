@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:abiturient_app/models/FAQ_model.dart';
 import 'package:abiturient_app/models/all_colleges_model.dart';
 import 'package:abiturient_app/models/colleges_by_region_model.dart';
 import 'package:abiturient_app/models/login_model.dart';
@@ -20,6 +21,7 @@ enum RequestNames {
   collegesByRegion,
   regions,
   news,
+  faq,
 }
 
 class ApiProvider {
@@ -166,6 +168,22 @@ class ApiProvider {
         }
         return responseJson;
         break;
+      case RequestNames.faq:
+        try {
+          final response = await http.get(
+            Uri.parse(FAQ),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+          );
+          log(response.body.toString(), name: "RequestNames.faq");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
       default:
         return Exception();
     }
@@ -187,6 +205,7 @@ class ApiProvider {
           String res = utf8.decode(response.bodyBytes);
           return res;
         } else if (requestname == RequestNames.myOrders) {
+          log("here", name: "HERE i am");
           // MyOrdersModel _myOrdersModel =
           //     myOrdersModelFromJson(response.bodyBytes);
           String res = utf8.decode(response.bodyBytes);
@@ -212,11 +231,13 @@ class ApiProvider {
 
           return _collegesByRegionModel;
         } else if (requestname == RequestNames.news) {
-          // CollegesByRegionModel _collegesByRegionModel =
-          //     collegesByRegionModelFromJson(response.bodyBytes);
           NewsModel _newsModel = newsModelFromJson(response.bodyBytes);
           log(_newsModel.toJson().toString(), name: "RequestNames.news");
           return _newsModel;
+        } else if (requestname == RequestNames.faq) {
+          FaqModel _faqModel = faqModelFromJson(response.bodyBytes);
+          log(_faqModel.toJson().toString(), name: "RequestNames.faq");
+          return _faqModel;
         }
         break;
       case 400:

@@ -4,15 +4,11 @@ import 'package:abiturient_app/screens/faq_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/prof_diagnostic_screen.dart';
-import 'package:abiturient_app/screens/push_notifications_screen.dart';
 import 'package:abiturient_app/screens/requests_screen.dart';
-import 'package:abiturient_app/screens/settings_screen.dart';
-import 'package:abiturient_app/screens/specialists_screen.dart';
 import 'package:abiturient_app/screens/virtual_blog_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'about_app_screen.dart';
 
 class MyDrawer extends StatefulWidget {
   @override
@@ -37,17 +33,10 @@ class _MyDrawerState extends State<MyDrawer> {
                 vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               children: [
-                Image.asset('assets/ico_mob_abiturient.png'),
+                Image.asset('assets/ico_mob_abiturient.png', width: MediaQuery.of(context).size.width * 0.3,),
                 // CircleAvatar(
                 //   child: Icon(Icons.account_circle),
                 // ),
-                Text(
-                  'АБИТУРИЕНТ',
-                  style: TextStyle(
-                      fontSize: MediaQuery.of(context).size.width * 0.045,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF1269db)),
-                )
               ],
             ),
           ),

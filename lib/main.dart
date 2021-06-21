@@ -2,6 +2,7 @@ import 'package:abiturient_app/blocs/all_colleges_bloc/all_colleges_bloc.dart';
 import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_bloc.dart';
 import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
+import 'package:abiturient_app/screens/login2_screen.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
 import 'package:abiturient_app/screens/news_screen.dart';
 import 'package:abiturient_app/screens/slid_screen.dart';
@@ -34,36 +35,35 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MultiBlocProvider(
-        providers: [
-          BlocProvider<DetailOrderBloc>(
-            lazy: false,
-            create: (context) =>
-                DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
-          ),
-          BlocProvider<MyOrdersBloc>(
-            // lazy: false,
-            create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
-          ),
-          BlocProvider<AllCollegesBloc>(
-            // lazy: false,
-            create: (context) => AllCollegesBloc()..add(AllCollegesGetEvent()),
-          ),
-          BlocProvider<CollegesByRegionBloc>(
-            // lazy: false,
-            create: (context) =>
-                CollegesByRegionBloc()..add(CollegesByRegionGetEvent(id: "1")),
-          ),
-          BlocProvider<RegionsBloc>(
-            lazy: false,
-            create: (context) => RegionsBloc()..add(RegionsGetEvent()),
-          ),
-        ],
-        child: this.isIntroSeen ? NewsScreen() : SlidersScreen(),
-        // LoginScreen()
-        // NewsScreen(),
-        // LoginScreen(),
-      ), // MyHomeScreen(),
+      home: MultiBlocProvider(providers: [
+        BlocProvider<DetailOrderBloc>(
+          lazy: false,
+          create: (context) =>
+              DetailOrderBloc()..add(DetailOrderGetEvent(requestId: "1")),
+        ),
+        BlocProvider<MyOrdersBloc>(
+          // lazy: false,
+          create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
+        ),
+        BlocProvider<AllCollegesBloc>(
+          // lazy: false,
+          create: (context) => AllCollegesBloc()..add(AllCollegesGetEvent()),
+        ),
+        BlocProvider<CollegesByRegionBloc>(
+          // lazy: false,
+          create: (context) =>
+              CollegesByRegionBloc()..add(CollegesByRegionGetEvent(id: "1")),
+        ),
+        BlocProvider<RegionsBloc>(
+          lazy: false,
+          create: (context) => RegionsBloc()..add(RegionsGetEvent()),
+        ),
+      ], child: Login2Screen()
+          // this.isIntroSeen ? NewsScreen() : SlidersScreen(),
+          // LoginScreen()
+          // NewsScreen(),
+          // LoginScreen(),
+          ), // MyHomeScreen(),
     );
   }
 }

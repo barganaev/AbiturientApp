@@ -14,14 +14,15 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
   @override
   Stream<NewsState> mapEventToState(NewsEvent event) async* {
-    if(event is NewsGetEvent) {
+    if (event is NewsGetEvent) {
       yield NewsLoadingState();
       try {
         log("Starting NewsLoadingState");
-        NewsModel _newsModel = await ApiProvider().requestPost(RequestNames.news);
+        NewsModel _newsModel =
+            await ApiProvider().requestPost(RequestNames.news);
         yield NewsLoadedState(newsModel: _newsModel);
       } catch (e) {
-        yield NewsLoadingState();
+        yield NewsErrorState();
         log('error in news_bloc.dart', name: "NEWS_BLOC.DART");
       }
     }

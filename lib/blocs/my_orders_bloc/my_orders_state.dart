@@ -7,7 +7,7 @@ class MyOrdersInitialState extends MyOrdersState {}
 
 class MyOrdersLoadedState extends MyOrdersState {
   // MyOrdersModel myOrdersModel;
-  dynamic myOrdersJson;
+  String myOrdersJson;
   MyOrdersLoadedState({this.myOrdersJson});
 }
 

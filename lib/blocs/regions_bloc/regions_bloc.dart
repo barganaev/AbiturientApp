@@ -22,7 +22,7 @@ class RegionsBloc extends Bloc<RegionsEvent, RegionsState> {
             await ApiProvider().requestPost(RequestNames.regions);
         yield RegionsLoadedState(regionsModel: _regionsModel);
       } catch (e) {
-        yield RegionsLoadingState();
+        yield RegionsErrorState();
       }
     }
   }

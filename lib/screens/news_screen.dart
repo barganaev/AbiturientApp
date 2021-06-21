@@ -29,8 +29,13 @@ class _NewsScreenState extends State<NewsScreen> {
             builder: (context, state) {
               if (state is NewsLoadedState) {
                 return ListView.builder(
+                    shrinkWrap: true,
                     itemCount: state.newsModel.data.body.length,
                     itemBuilder: (context, index) {
+                      // log(state.newsModel.data.body[0].image[0],
+                      //     name: "url name");
+                      DateTime dateTime =
+                          state.newsModel.data.body[index].createdAt;
                       return Padding(
                         padding: EdgeInsets.symmetric(
                             vertical: MediaQuery.of(context).size.height * 0.01,
@@ -42,10 +47,12 @@ class _NewsScreenState extends State<NewsScreen> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => NewsDetailScreen(
-                                  title: state.newsModel.data.body[index].title,
-                                  body: state.newsModel.data.body[index].body,
-                                  img: state.newsModel.data.body[index]
-                                      .image[index][0],
+                                  title: state.newsModel.data.body[index].title
+                                      .toString(),
+                                  body: state.newsModel.data.body[index].body
+                                      .toString(),
+                                  img: state.newsModel.data.body[index].image[0]
+                                      .toString(),
                                   createdAt: state
                                       .newsModel.data.body[index].createdAt
                                       .toString(),
@@ -64,11 +71,9 @@ class _NewsScreenState extends State<NewsScreen> {
                                     semanticContainer: true,
                                     clipBehavior: Clip.antiAliasWithSaveLayer,
                                     child: Image.network(
-                                        "https://api.abiturient.edus.kz/uploads/2021/06/60cc8bfbabd89.jpeg"),
-                                    // '${state.newsModel.data.body[index].image[index][0]}'),
-                                    // Image.network(
-                                    //     "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
-                                    //     fit: BoxFit.fitWidth),
+                                      '${state.newsModel.data.body[index].image[0]}',
+                                      fit: BoxFit.fill,
+                                    ),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10),
                                     ),
@@ -81,20 +86,22 @@ class _NewsScreenState extends State<NewsScreen> {
                                           MediaQuery.of(context).size.height *
                                               0.01),
                                   child: Text(
-                                    '${state.newsModel.data.body[index].title}'
-                                    /*'Expert Advice: How to Build an Accessible Education Website on WordPress.com'*/,
+                                    '${state.newsModel.data.body[index].title.toString()}',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
                                 ),
                                 Padding(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical:
-                                            MediaQuery.of(context).size.height *
-                                                0.01),
-                                    child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('19.08.2020, 19:17'))),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical:
+                                          MediaQuery.of(context).size.height *
+                                              0.01),
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                        '${dateTime.toString().substring(0, 10)}, ${dateTime.toString().substring(11, 16)}'),
+                                  ),
+                                ),
                                 Divider()
                               ],
                             ),
