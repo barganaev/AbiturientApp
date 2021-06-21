@@ -21,7 +21,7 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
             children: [
               Container(
                 height: MediaQuery.of(context).size.height * 0.3,
-                child: Image.asset('${widget.img}')
+                child: Image.network('${widget.img}')
                 /*Image.network(
                     "https://satsis.info/uploads/posts/2020-03/1583870954_www.satsis.info__sky-news-uk.png",
                     fit: BoxFit.fill)*/,

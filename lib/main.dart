@@ -3,6 +3,7 @@ import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_
 import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/screens/login_screen.dart';
+import 'package:abiturient_app/screens/logo_screen.dart';
 import 'package:abiturient_app/screens/slid_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +60,8 @@ class MyApp extends StatelessWidget {
           ),
         ],
         // child: this.isIntroSeen ? LoginScreen() : SlidersScreen(),
-        child: LoginScreen()
+        child: LogoScreen()
+        /*SlidersScreen()*/
         // NewsScreen(),
         // LoginScreen(),
       ), // MyHomeScreen(),
