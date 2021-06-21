@@ -146,17 +146,17 @@ class ApiProvider {
         break;
       case RequestNames.news:
         try {
-          final response = await http.post(
-            Uri.parse(COLLEGES_BY_REGION + ab),
+          final response = await http.get(
+            Uri.parse(NEWS),
             headers: <String, String>{
               'Content-Type': 'application/json; charset=UTF-8',
             },
-            body: jsonEncode(
-              <String, String>{
-                'page': "1",
-                'lang': "kk",
-              },
-            ),
+            // body: jsonEncode(
+            //   <String, String>{
+            //     'page': "1",
+            //     'lang': "kk",
+            //   },
+            // ),
           );
           // log(response.body.toString(), name: "COLLEGES_BY_REGION");
           responseJson = _response(response, requestName);

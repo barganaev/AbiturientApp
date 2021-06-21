@@ -26,19 +26,21 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         children: [
           Container(
-              color: Color(0xFF1269db),
-              child: Image.asset(
-                'assets/logo_edus_blue.png',
-                height: MediaQuery.of(context).size.height * 0.05,
-              )),
+            color: Color(0xFF1269db),
+            child: Image.asset(
+              'assets/logo_edus_blue.png',
+              height: MediaQuery.of(context).size.height * 0.05,
+            ),
+          ),
           Container(
             padding: EdgeInsets.symmetric(
                 vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               children: [
-                CircleAvatar(
-                  child: Icon(Icons.account_circle),
-                ),
+                Image.asset('assets/ico_mob_abiturient.png'),
+                // CircleAvatar(
+                //   child: Icon(Icons.account_circle),
+                // ),
                 Text(
                   'АБИТУРИЕНТ',
                   style: TextStyle(
@@ -110,23 +112,21 @@ class _MyDrawerState extends State<MyDrawer> {
                     builder: (context) => CollegeScreen(),
                   ),
                   (route) => false);
-              // Navigator.push(context,
-              //     MaterialPageRoute(builder: (context) => CollegeScreen()));
             },
           ),
-          ListTile(
-            leading: Icon(Icons.assistant_navigation),
-            title: Text('Специальности'),
-            onTap: () {
-              Navigator.pushAndRemoveUntil(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SpecialistsScreen(),
-                  ),
-                  (route) => false);
-              // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
-            },
-          ),
+          // ListTile(
+          //   leading: Icon(Icons.assistant_navigation),
+          //   title: Text('Специальности'),
+          //   onTap: () {
+          //     Navigator.pushAndRemoveUntil(
+          //         context,
+          //         MaterialPageRoute(
+          //           builder: (context) => SpecialistsScreen(),
+          //         ),
+          //         (route) => false);
+          //     // Navigator.push(context, MaterialPageRoute(builder: (context) => RequestsScreen()));
+          //   },
+          // ),
           ListTile(
             leading: Icon(Icons.question_answer),
             title: Text('Вопросы-ответы'),
@@ -190,10 +190,6 @@ class _MyDrawerState extends State<MyDrawer> {
                     builder: (context) => ProfDiagnosticScreen(),
                   ),
                   (route) => false);
-              // Navigator.push(
-              //     context,
-              //     MaterialPageRoute(
-              //         builder: (context) => ProfDiagnosticScreen()));
             },
           ),
           // ListTile(

@@ -1,6 +1,7 @@
 import 'package:abiturient_app/screens/drawer_screen.dart';
 
 import 'package:abiturient_app/widgets/appbar_widget.dart';
+import 'package:abiturient_app/widgets/on_will_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -14,10 +15,13 @@ class _ApplyRequestScreenState extends State<ApplyRequestScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBarMy('Подать заявку'),
-      drawer: MyDrawer(),
-      body: Center(child: MyRequestWidget()),
+    return WillPopScope(
+      onWillPop: () => willPopCallback(context),
+      child: Scaffold(
+        appBar: appBarMy('Подать заявку'),
+        drawer: MyDrawer(),
+        body: Center(child: MyRequestWidget()),
+      ),
     );
   }
 
