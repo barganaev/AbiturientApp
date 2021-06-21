@@ -31,16 +31,17 @@ class _MyDrawerState extends State<MyDrawer> {
                 vertical: MediaQuery.of(context).size.height * 0.02),
             child: Column(
               children: [
-                Image.asset('assets/ico_mob_abiturient.png'),
+                Image.asset('assets/ico_mob_abiturient.png', width: MediaQuery.of(context).size.width * 0.3,),
                 // CircleAvatar(
                 //   child: Icon(Icons.account_circle),
                 // ),
-                Text(
-                  'АБИТУРИЕНТ',
-                  style: TextStyle(
-                    fontSize: MediaQuery.of(context).size.width * 0.045,
-                      fontWeight: FontWeight.bold, color: Color(0xFF1269db)),
-                )
+
+                // Text(
+                //   'АБИТУРИЕНТ',
+                //   style: TextStyle(
+                //     fontSize: MediaQuery.of(context).size.width * 0.045,
+                //       fontWeight: FontWeight.bold, color: Color(0xFF1269db)),
+                // )
               ],
             ),
           ),
