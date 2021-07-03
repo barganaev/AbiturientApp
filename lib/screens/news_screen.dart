@@ -62,6 +62,8 @@ class _NewsScreenState extends State<NewsScreen> {
                             );
                           },
                           child: Container(
+                            // TODO: This container's padding also will change size of image size
+                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.04),
                             child: Column(
                               children: [
                                 Container(
