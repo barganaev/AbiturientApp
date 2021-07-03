@@ -60,6 +60,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 return Center(
                   child: Text("Error"),
                 );
+                // SnackBar(content: Text('Ошибка'));
+
               }
             },
           ),

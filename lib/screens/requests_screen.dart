@@ -201,6 +201,8 @@ class _RequestsScreenState extends State<RequestsScreen> {
                   return Center(
                     child: Text('Look for request_screen.dart'),
                   );
+                  // SnackBar(content: Text('Ошибка'));
+
                 } else {
                   return Center(
                     child: Text('Error in request_screen.dart'),

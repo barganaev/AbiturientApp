@@ -162,8 +162,10 @@ class ApiProvider {
           );
           // log(response.body.toString(), name: "COLLEGES_BY_REGION");
           responseJson = _response(response, requestName);
+          print('THERE IS A TOKEN -> ${_token}');
         } catch (e) {
           log(e.toString());
+          print('THERE IS A TOKEN -> ${_token}');
           return e;
         }
         return responseJson;
