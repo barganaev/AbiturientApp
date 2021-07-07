@@ -1,4 +1,5 @@
 import 'package:abiturient_app/blocs/all_colleges_bloc/all_colleges_bloc.dart';
+import 'package:abiturient_app/models/colleges_by_region_model.dart';
 import 'package:abiturient_app/screens/college_detail_screen.dart';
 import 'package:abiturient_app/screens/drawer_screen.dart';
 import 'dart:developer';
@@ -47,7 +48,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
       onWillPop: () => willPopCallback(context),
       child: Scaffold(
         key: _scaffoldState,
-        appBar: appBarMy("Колледж"),
+        appBar: appBarMy("Колледжи"),
         drawer: MyDrawer(),
         body: MultiBlocProvider(
           providers: [
@@ -112,6 +113,7 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                               .list
                                               .length,
                                           itemBuilder: (context, index) {
+                                            List<ListElement> listt = state2.collegesByRegionModel.data.list;
                                             // List<ListElement> list_of_colleges = state.allCollegesModel.data.list;
                                             return Container(
                                               child: Column(
@@ -142,7 +144,15 @@ class _CollegeScreenState extends State<CollegeScreen> {
                                                               0.6,
                                                       child: InkWell(
                                                         onTap: (){
-                                                          // Navigator.push(context, MaterialPageRoute(builder: (context) => CollegeDetailScreen()));
+                                                          Navigator.push(
+                                                              context,
+                                                              MaterialPageRoute(
+                                                              builder: (context) => CollegeDetailScreen(
+                                                                bin: listt[index].bin,
+                                                                  // bin: state2.collegesByRegionModel.data.list[index].bin
+                                                              )
+                                                            )
+                                                          );
                                                         },
                                                         child: Card(
                                                           semanticContainer: true,

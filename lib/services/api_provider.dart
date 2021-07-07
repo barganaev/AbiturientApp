@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:abiturient_app/models/FAQ_model.dart';
 import 'package:abiturient_app/models/all_colleges_model.dart';
+import 'package:abiturient_app/models/college_detail.dart';
 import 'package:abiturient_app/models/colleges_by_region_model.dart';
 import 'package:abiturient_app/models/login_model.dart';
 import 'package:abiturient_app/models/detail_order_model.dart';
@@ -22,6 +23,7 @@ enum RequestNames {
   regions,
   news,
   faq,
+  collegeDetail,
 }
 
 class ApiProvider {
@@ -32,6 +34,7 @@ class ApiProvider {
     String ecpFile,
     String password,
     String ab,
+    String collegeBin,
   }) async {
     var responseJson;
 
@@ -186,6 +189,22 @@ class ApiProvider {
         }
         return responseJson;
         break;
+      case RequestNames.collegeDetail:
+        try {
+          final response = await http.get(
+            Uri.parse(COLLEGE_DETAIL + collegeBin),
+            headers: <String, String>{
+              'Content-Type': 'application/json; charset=UTF-8',
+            },
+          );
+          log(response.body.toString(), name: "RequestNames.collegeDetail");
+          responseJson = _response(response, requestName);
+        } catch (e) {
+          log(e.toString());
+          return e;
+        }
+        return responseJson;
+        break;
       default:
         return Exception();
     }
@@ -240,6 +259,12 @@ class ApiProvider {
           FaqModel _faqModel = faqModelFromJson(response.bodyBytes);
           log(_faqModel.toJson().toString(), name: "RequestNames.faq");
           return _faqModel;
+        } else if (requestname == RequestNames.collegeDetail) {
+          CollegeDetailModel _collegeDetailModel =
+              collegeDetailModelFromJson(response.bodyBytes);
+          return _collegeDetailModel;
+          // String res = utf8.decode(response.bodyBytes);
+          // return res;
         }
         break;
       case 400:
