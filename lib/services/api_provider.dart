@@ -263,10 +263,10 @@ class ApiProvider {
           print('BEFORE REQUESTNAMES.COLLEGE_DETAIL');
           CollegeDetailModel _collegeDetailModel =
               collegeDetailModelFromJson(response.bodyBytes);
-          Map<String, dynamic> _map = json.decode(utf8.decode(response.bodyBytes));
+          // Map<String, dynamic> _map = json.decode(utf8.decode(response.bodyBytes));
 
           log(_collegeDetailModel.toJson().toString(), name: "REQUESTNAMES.COLLEGE_DETAIL");
-          return _map;/*_collegeDetailModel;*/
+          return /*_map;*/_collegeDetailModel;
 
           // String res = utf8.decode(response.bodyBytes);
           // return res;
