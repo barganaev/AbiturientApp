@@ -16,6 +16,8 @@ class CollegeDetailScreen extends StatefulWidget {
 }
 
 class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
+
+  bool visib = true;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +63,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.name.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.name.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -85,7 +87,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.regionName.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.regionName.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -109,7 +111,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.orgTypeName.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.orgTypeName.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -133,7 +135,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.ownershipTypeName.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.ownershipTypeName.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -157,7 +159,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.address.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.address.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -181,7 +183,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.phoneNumber.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.phoneNumber.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -205,7 +207,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.email.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.email.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -229,7 +231,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.siteUrl.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.siteUrl.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -253,7 +255,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           flex: 1,
                                           child: Container(
                                             child: ListTile(
-                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.directorFullname.name, style: TextStyle(fontWeight: FontWeight.bold),),
+                                              title: Text(state.collegeDetailModel.data.content.collegeData.values.directorFullname.name ?? "-", style: TextStyle(fontWeight: FontWeight.bold),),
                                             ),
                                           ),
                                         ),
@@ -275,57 +277,60 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                           ],
                         )
                     ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          vertical: MediaQuery.of(context).size.height * 0.03,
-                          horizontal: MediaQuery.of(context).size.width * 0.03
-                      ),
-                      child: Container(
-                        width: MediaQuery.of(context).size.height * 0.6,
-                        child: Card(
-                          semanticContainer: true,
-                          clipBehavior: Clip.antiAliasWithSaveLayer,
-                          child: Container(
-                            // padding: EdgeInsets.symmetric(
-                            //     horizontal: MediaQuery.of(context).size.width * 0.03
-                            // ),
-                            child: Column(
-                              children: [
-                                ListTile(
-                                  tileColor: Colors.grey[50],
-                                  title: Text(
-                                    // '${state.collegeDetailModel.data.text}',
-                                    'Общее сведения',
-                                    // '${state2.collegesByRegionModel.data.list[index].name}',
-                                    style: TextStyle(
-                                        fontSize: MediaQuery.of(context).size.width * 0.05,
-                                      fontWeight: FontWeight.bold
+                    Visibility(
+                      visible: visib,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                            vertical: MediaQuery.of(context).size.height * 0.03,
+                            horizontal: MediaQuery.of(context).size.width * 0.03
+                        ),
+                        child: Container(
+                          width: MediaQuery.of(context).size.height * 0.6,
+                          child: Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            child: Container(
+                              // padding: EdgeInsets.symmetric(
+                              //     horizontal: MediaQuery.of(context).size.width * 0.03
+                              // ),
+                              child: Column(
+                                children: [
+                                  ListTile(
+                                    tileColor: Colors.grey[50],
+                                    title: Text(
+                                      // '${state.collegeDetailModel.data.text}',
+                                      'Общее сведения',
+                                      // '${state2.collegesByRegionModel.data.list[index].name}',
+                                      style: TextStyle(
+                                          fontSize: MediaQuery.of(context).size.width * 0.05,
+                                        fontWeight: FontWeight.bold
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: MediaQuery.of(context).size.height * 0.005
-                                  ),
-                                  child: Padding(
+                                  Padding(
                                     padding: EdgeInsets.symmetric(
-                                        vertical: MediaQuery.of(context).size.height * 0.01,
-                                        horizontal: MediaQuery.of(context).size.width * 0.04
+                                        vertical: MediaQuery.of(context).size.height * 0.005
                                     ),
-                                    child: Text(
-                                      state.collegeDetailModel.data.content.generalInformation.data,
-                                      // '${state2.collegesByRegionModel.data.list[index].phoneNumber}'
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: MediaQuery.of(context).size.height * 0.01,
+                                          horizontal: MediaQuery.of(context).size.width * 0.04
+                                      ),
+                                      child: Text(
+                                        state.collegeDetailModel.data.content.generalInformation.data/* == null ? visib : !visib*/,
+                                        // '${state2.collegesByRegionModel.data.list[index].phoneNumber}'
+                                      ),
                                     ),
                                   ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(
-                                      vertical: MediaQuery.of(context).size.height * 0.02,
-                                      horizontal: MediaQuery.of(context).size.height * 0.02
-                                  ),
-                                  child: Container(),
-                                )
-                              ],
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(
+                                        vertical: MediaQuery.of(context).size.height * 0.02,
+                                        horizontal: MediaQuery.of(context).size.height * 0.02
+                                    ),
+                                    child: Container(),
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

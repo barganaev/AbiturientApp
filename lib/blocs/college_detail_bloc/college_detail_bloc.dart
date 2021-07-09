@@ -19,7 +19,7 @@ class CollegeDetailBloc extends Bloc<CollegeDetailEvent, CollegeDetailState> {
       yield CollegeDetailLoadingState();
       try {
         log('THIS IS INPUT');
-        CollegeDetailModel _collegeDetailModel = await ApiProvider().requestPost(RequestNames.collegeDetail/*, collegeBin: event.collegeBin*/);
+        CollegeDetailModel _collegeDetailModel = await ApiProvider().requestPost(RequestNames.collegeDetail, collegeBin: event.collegeBin);
         log('${_collegeDetailModel.toJson().toString()}', name: 'SHOWING MODEL -> '); // doesn't show log();
         print('THIS IS RIGHT WAY!');
         yield CollegeDetailLoadedState(collegeDetailModel: _collegeDetailModel);
