@@ -26,7 +26,7 @@ class _Login2ScreenState extends State<Login2Screen> {
 
   var filePath;
   Future<void> openFile() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles();
+    FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['p12']);
     if (result != null) {
       print(result.toString());
       PlatformFile file = result.files.first;
