@@ -317,7 +317,7 @@ class _CollegeDetailScreenState extends State<CollegeDetailScreen> {
                                           horizontal: MediaQuery.of(context).size.width * 0.04
                                       ),
                                       child: Text(
-                                        state.collegeDetailModel.data.content.generalInformation.data/* == null ? visib : !visib*/,
+                                        state.collegeDetailModel.data.content.generalInformation.data ?? "-"/* == null ? visib : !visib*/,
                                         // '${state2.collegesByRegionModel.data.list[index].phoneNumber}'
                                       ),
                                     ),
