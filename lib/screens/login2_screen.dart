@@ -172,6 +172,13 @@ class _Login2ScreenState extends State<Login2Screen> {
                     builder: (contex) => RequestsScreen() /*MyHomeScreen()*/,
                   ),
                 );
+              } else if (state is LoginErrorState) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
+                  content: Text(
+                      'Попробуйте еще раз!'),
+                  duration: Duration(seconds: 2),
+                ));
               }
             },
             builder: (context, state) {
@@ -256,9 +263,13 @@ class _Login2ScreenState extends State<Login2Screen> {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
+              } else if (state is LoginErrorState){
+                return Center(
+                  child: Text("Ошибка"),
+                );
               } else {
                 return Center(
-                  child: Text("Error"),
+                  child: Text("Error - Ошибка"),
                 );
               }
             },
