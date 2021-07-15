@@ -26,14 +26,18 @@ class _Login2ScreenState extends State<Login2Screen> {
 
   var filePath;
   Future<void> openFile() async {
-    FilePickerResult result = await FilePicker.platform.pickFiles();
+    FilePickerResult result = await FilePicker.platform.pickFiles(type: FileType.custom, allowedExtensions: ['p12']);
     if (result != null) {
+      print(result.toString());
       PlatformFile file = result.files.first;
       setState(() {
         fileName = file.name;
         filePath = file.path;
       });
+      final bytes = Io.File('${file.path}').readAsBytesSync();
+      img64 = base64Encode(bytes);
     } else {
+      print(result.toString());
       print('ERROR IS IN OPENFILE FUNCTION!');
     }
   }
@@ -50,8 +54,6 @@ class _Login2ScreenState extends State<Login2Screen> {
         InkWell(
           onTap: () async {
             await openFile();
-            final bytes = Io.File('${filePath}').readAsBytesSync();
-            img64 = base64Encode(bytes);
           },
           child: Container(
             alignment: Alignment.centerLeft,
@@ -170,6 +172,13 @@ class _Login2ScreenState extends State<Login2Screen> {
                     builder: (contex) => RequestsScreen() /*MyHomeScreen()*/,
                   ),
                 );
+              } else if (state is LoginErrorState) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(SnackBar(
+                  content: Text(
+                      'Попробуйте еще раз!'),
+                  duration: Duration(seconds: 2),
+                ));
               }
             },
             builder: (context, state) {
@@ -223,6 +232,16 @@ class _Login2ScreenState extends State<Login2Screen> {
                                   height: 30.0,
                                 ),
                                 _buildPasswordTF(),
+                                Center(
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: MediaQuery.of(context).size.height * 0.05,
+                                      ),
+                                      Text('Ошибка! Попробуйте ввести корректный пароль.', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
+                                    ],
+                                  ),
+                                ),
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,
@@ -254,9 +273,13 @@ class _Login2ScreenState extends State<Login2Screen> {
                 return Center(
                   child: CircularProgressIndicator(),
                 );
+              } else if (state is LoginErrorState){
+                return Center(
+                  child: Text("Ошибка"),
+                );
               } else {
                 return Center(
-                  child: Text("Error"),
+                  child: Text("Error - Ошибка"),
                 );
               }
             },
