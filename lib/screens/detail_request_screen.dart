@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:abiturient_app/blocs/detail_order_bloc/detail_orders_bloc.dart';
 import 'package:abiturient_app/widgets/appbar_widget.dart';
@@ -24,7 +25,8 @@ class _DetailRequestScreenState extends State<DetailRequestScreen> {
         child: Container(
           child: ListTile(
             title: Text(
-              mapJson["value"]["name"].toString(),
+              // mapJson["value"]["name"].toString(),
+              mapJson["value"].toString(),
             ),
           ),
         ),
@@ -71,7 +73,7 @@ class _DetailRequestScreenState extends State<DetailRequestScreen> {
                 Map<String, dynamic> jsonData = jsonDataRes["data"];
                 Map<String, dynamic> jsonBlock = jsonDataRes["data"]["block"];
                 jsonData.remove("block");
-                print(jsonData);
+                log(jsonBlock.length.toString(), name: "jsonBlock");
                 return Padding(
                   padding: EdgeInsets.only(
                     left: MediaQuery.of(context).size.width * 0.01,
@@ -138,12 +140,13 @@ class _DetailRequestScreenState extends State<DetailRequestScreen> {
                                                     ),
                                                   ),
                                                   myWidget(
-                                                      jsonValues.values
-                                                          .elementAt(
-                                                              index2)["type"]
-                                                          .toString(),
-                                                      jsonValues.values
-                                                          .elementAt(index2)),
+                                                    jsonValues.values
+                                                        .elementAt(
+                                                            index2)["type"]
+                                                        .toString(),
+                                                    jsonValues.values
+                                                        .elementAt(index2),
+                                                  ),
                                                 ],
                                               ),
                                               Divider(),
@@ -166,6 +169,8 @@ class _DetailRequestScreenState extends State<DetailRequestScreen> {
                           itemBuilder: (context, index) {
                             Map<String, dynamic> itemBlock =
                                 jsonBlock.values.elementAt(index);
+                            log(itemBlock['values'].values.length.toString(),
+                                name: "itemBloc values");
                             // return Text(itemBlock['values'].toString());
                             return Column(
                               children: [
@@ -306,7 +311,6 @@ class _DetailRequestScreenState extends State<DetailRequestScreen> {
                                 //         ),
                                 //       ),
                                 //     );
-
                                 //   },
                                 // ),
                               ],
