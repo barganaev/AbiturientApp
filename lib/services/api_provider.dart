@@ -163,7 +163,7 @@ class ApiProvider {
             //   },
             // ),
           );
-          // log(response.body.toString(), name: "COLLEGES_BY_REGION");
+          log(response.body.toString(), name: "RequestNames.news http.get");
           responseJson = _response(response, requestName);
           print('THERE IS A TOKEN -> ${_token}');
         } catch (e) {
@@ -197,7 +197,11 @@ class ApiProvider {
               'Content-Type': 'application/json; charset=UTF-8',
             },
           );
-          log(collegeDetailModelFromJson(response.bodyBytes).toJson().toString()/*response.body.toString()*/, name: "RequestNames.collegeDetail");
+          log(
+              collegeDetailModelFromJson(response.bodyBytes)
+                  .toJson()
+                  .toString() /*response.body.toString()*/,
+              name: "RequestNames.collegeDetail");
           responseJson = _response(response, requestName);
         } catch (e) {
           log(e.toString());
@@ -254,6 +258,8 @@ class ApiProvider {
         } else if (requestname == RequestNames.news) {
           NewsModel _newsModel = newsModelFromJson(response.bodyBytes);
           log(_newsModel.toJson().toString(), name: "RequestNames.news");
+          log(_newsModel.data.body.length.toString(),
+              name: "RequestNames.news length");
           return _newsModel;
         } else if (requestname == RequestNames.faq) {
           FaqModel _faqModel = faqModelFromJson(response.bodyBytes);
@@ -265,8 +271,9 @@ class ApiProvider {
               collegeDetailModelFromJson(response.bodyBytes);
           // Map<String, dynamic> _map = json.decode(utf8.decode(response.bodyBytes));
 
-          log(_collegeDetailModel.toJson().toString(), name: "REQUESTNAMES.COLLEGE_DETAIL");
-          return /*_map;*/_collegeDetailModel;
+          log(_collegeDetailModel.toJson().toString(),
+              name: "REQUESTNAMES.COLLEGE_DETAIL");
+          return /*_map;*/ _collegeDetailModel;
 
           // String res = utf8.decode(response.bodyBytes);
           // return res;

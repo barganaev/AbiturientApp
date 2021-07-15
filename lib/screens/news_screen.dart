@@ -29,6 +29,8 @@ class _NewsScreenState extends State<NewsScreen> {
             builder: (context, state) {
               if (state is NewsLoadedState) {
                 log(state.newsModel.data.body[0].image[0], name: "Image URL");
+                log(state.newsModel.data.body.length.toString(),
+                    name: "news body length");
                 return ListView.builder(
                     shrinkWrap: true,
                     itemCount: state.newsModel.data.body.length,
@@ -62,8 +64,9 @@ class _NewsScreenState extends State<NewsScreen> {
                             );
                           },
                           child: Container(
-                            // TODO: This container's padding also will change size of image size
-                            padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.04),
+                            padding: EdgeInsets.symmetric(
+                                horizontal:
+                                    MediaQuery.of(context).size.width * 0.04),
                             child: Column(
                               children: [
                                 Container(
@@ -105,7 +108,7 @@ class _NewsScreenState extends State<NewsScreen> {
                                         '${dateTime.toString().substring(0, 10)}, ${dateTime.toString().substring(11, 16)}'),
                                   ),
                                 ),
-                                Divider()
+                                Divider(),
                               ],
                             ),
                           ),

@@ -18,14 +18,23 @@ class NewsModel {
   String status;
   Data data;
 
+  NewsModel copyWith({
+    String status,
+    Data data,
+  }) =>
+      NewsModel(
+        status: status ?? this.status,
+        data: data ?? this.data,
+      );
+
   factory NewsModel.fromJson(Map<String, dynamic> json) => NewsModel(
-        status: json["status"] == null ? null : json["status"],
-        data: json["data"] == null ? null : Data.fromJson(json["data"]),
+        status: json["status"],
+        data: Data.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "status": status == null ? null : status,
-        "data": data == null ? null : data.toJson(),
+        "status": status,
+        "data": data.toJson(),
       };
 }
 
@@ -40,25 +49,33 @@ class Data {
   int pages;
   List<Body> body;
 
+  Data copyWith({
+    String count,
+    int pages,
+    List<Body> body,
+  }) =>
+      Data(
+        count: count ?? this.count,
+        pages: pages ?? this.pages,
+        body: body ?? this.body,
+      );
+
   factory Data.fromJson(Map<String, dynamic> json) => Data(
-        count: json["count"] == null ? null : json["count"],
-        pages: json["pages"] == null ? null : json["pages"],
-        body: json["body"] == null
-            ? null
-            : List<Body>.from(json["body"].map((x) => Body.fromJson(x))),
+        count: json["count"],
+        pages: json["pages"],
+        body: List<Body>.from(json["body"].map((x) => Body.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "count": count == null ? null : count,
-        "pages": pages == null ? null : pages,
-        "body": body == null
-            ? null
-            : List<dynamic>.from(body.map((x) => x.toJson())),
+        "count": count,
+        "pages": pages,
+        "body": List<dynamic>.from(body.map((x) => x.toJson())),
       };
 }
 
 class Body {
   Body({
+    this.id,
     this.lang,
     this.bin,
     this.title,
@@ -68,6 +85,7 @@ class Body {
     this.image,
   });
 
+  String id;
   String lang;
   String bin;
   String title;
@@ -76,29 +94,48 @@ class Body {
   DateTime updatedAt;
   List<String> image;
 
+  Body copyWith({
+    String id,
+    String lang,
+    String bin,
+    String title,
+    String body,
+    DateTime createdAt,
+    DateTime updatedAt,
+    List<String> image,
+  }) =>
+      Body(
+        id: id ?? this.id,
+        lang: lang ?? this.lang,
+        bin: bin ?? this.bin,
+        title: title ?? this.title,
+        body: body ?? this.body,
+        createdAt: createdAt ?? this.createdAt,
+        updatedAt: updatedAt ?? this.updatedAt,
+        image: image ?? this.image,
+      );
+
   factory Body.fromJson(Map<String, dynamic> json) => Body(
-        lang: json["lang"] == null ? null : json["lang"],
-        bin: json["bin"] == null ? null : json["bin"],
-        title: json["title"] == null ? null : json["title"],
-        body: json["body"] == null ? null : json["body"],
-        createdAt: json["created_at"] == null
-            ? null
-            : DateTime.parse(json["created_at"]),
+        id: json["id"],
+        lang: json["lang"],
+        bin: json["bin"],
+        title: json["title"],
+        body: json["body"],
+        createdAt: DateTime.parse(json["created_at"]),
         updatedAt: json["updated_at"] == null
             ? null
             : DateTime.parse(json["updated_at"]),
-        image: json["image"] == null
-            ? null
-            : List<String>.from(json["image"].map((x) => x)),
+        image: List<String>.from(json["image"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
-        "lang": lang == null ? null : lang,
-        "bin": bin == null ? null : bin,
-        "title": title == null ? null : title,
-        "body": body == null ? null : body,
-        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+        "id": id,
+        "lang": lang,
+        "bin": bin,
+        "title": title,
+        "body": body,
+        "created_at": createdAt.toIso8601String(),
         "updated_at": updatedAt == null ? null : updatedAt.toIso8601String(),
-        "image": image == null ? null : List<dynamic>.from(image.map((x) => x)),
+        "image": List<dynamic>.from(image.map((x) => x)),
       };
 }
