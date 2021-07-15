@@ -60,12 +60,17 @@ class _RequestsScreenState extends State<RequestsScreen> {
                 create: (context) => MyOrdersBloc()..add(MyOrdersGetEvent()),
               ),
             ],
-            child: BlocBuilder<MyOrdersBloc, MyOrdersState>(
-              // listener: (context, state) {
-              //   if (state is MyOrdersErrorState) {
-              //     // Navigator.pop(context);
-              //   }
-              // },
+            child: BlocConsumer<MyOrdersBloc, MyOrdersState>(
+              listener: (context, state) {
+                if (state is MyOrdersErrorState) {
+                  ScaffoldMessenger.of(context)
+                      .showSnackBar(SnackBar(
+                    content: Text(
+                        'Попробуйте еще раз!'),
+                    duration: Duration(seconds: 2),
+                  ));
+                }
+              },
               builder: (context, state) {
                 if (state is MyOrdersLoadedState) {
                   // dynamic headerJson =
@@ -199,13 +204,13 @@ class _RequestsScreenState extends State<RequestsScreen> {
                   );
                 } else if (state is MyOrdersErrorState) {
                   return Center(
-                    child: Text('Look for request_screen.dart'),
+                    child: Text('Попробуйте еще раз!'),
                   );
                   // SnackBar(content: Text('Ошибка'));
 
                 } else {
                   return Center(
-                    child: Text('Error in request_screen.dart'),
+                    child: Text('Ошибка!'),
                   );
                 }
               },
