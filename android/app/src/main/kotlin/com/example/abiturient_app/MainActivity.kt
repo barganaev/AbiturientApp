@@ -1,4 +1,4 @@
-package com.example.abiturient_app
+package kz.edus.abiturient
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
