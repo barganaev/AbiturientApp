@@ -19,6 +19,7 @@ class _Login2ScreenState extends State<Login2Screen> {
   bool _rememberMe = false;
   var fileName;
   String img64;
+  final _formKey = GlobalKey<FormState>();
 
   TextEditingController _passwordController = TextEditingController(text: "");
 
@@ -96,26 +97,36 @@ class _Login2ScreenState extends State<Login2Screen> {
           alignment: Alignment.centerLeft,
           decoration: kBoxDecorationStyle,
           height: 60.0,
-          child: TextField(
-            controller: _passwordController,
-            // onEditingComplete: () {
-            //   BlocProvider.of<LoginBloc>(_scaffoldkey.currentState.context)
-            //       .add(LoginDoEvent(p12: ECP_FILE, password: "Qwerty12"));
-            // },
-            obscureText: true,
-            style: TextStyle(
-              color: Colors.white,
-              fontFamily: 'OpenSans',
-            ),
-            decoration: InputDecoration(
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.only(top: 14.0),
-              prefixIcon: Icon(
-                Icons.lock,
+          child: Form(
+            key: _formKey,
+            child: TextFormField(
+              // key: _formKey,
+              validator: (value){
+                if (value.isEmpty) {
+                  return ''/*'Пожалуйста, вводите текст'*/;
+                }
+                return null;
+              },
+              controller: _passwordController,
+              // onEditingComplete: () {
+              //   BlocProvider.of<LoginBloc>(_scaffoldkey.currentState.context)
+              //       .add(LoginDoEvent(p12: ECP_FILE, password: "Qwerty12"));
+              // },
+              obscureText: true,
+              style: TextStyle(
                 color: Colors.white,
+                fontFamily: 'OpenSans',
               ),
-              hintText: 'Введите пароль',
-              hintStyle: kHintTextStyle,
+              decoration: InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(top: 14.0),
+                prefixIcon: Icon(
+                  Icons.lock,
+                  color: Colors.white,
+                ),
+                hintText: 'Введите пароль',
+                hintStyle: kHintTextStyle,
+              ),
             ),
           ),
         ),
@@ -130,10 +141,25 @@ class _Login2ScreenState extends State<Login2Screen> {
       child: RaisedButton(
         elevation: 5.0,
         onPressed: () {
-          log(this.img64, name: "base64");
-          log(_passwordController.text, name: "_passwordController");
-          BlocProvider.of<LoginBloc>(context).add(LoginDoEvent(
-              p12: this.img64, password: _passwordController.text));
+          if (_formKey.currentState.validate()) {
+            log(this.img64, name: "base64");
+            log(_passwordController.text, name: "_passwordController");
+            BlocProvider.of<LoginBloc>(context).add(LoginDoEvent(
+                p12: this.img64, password: _passwordController.text));
+          } else {
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text(
+                  'Ошибка! Попробуйте ввести корректный пароль.',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold
+                  ),
+                ),
+                backgroundColor: Colors.white,
+              )
+            );
+          }
 
           /// this.img  // pass controller text
         },
@@ -232,16 +258,6 @@ class _Login2ScreenState extends State<Login2Screen> {
                                   height: 30.0,
                                 ),
                                 _buildPasswordTF(),
-                                Center(
-                                  child: Column(
-                                    children: [
-                                      SizedBox(
-                                        height: MediaQuery.of(context).size.height * 0.05,
-                                      ),
-                                      Text('Ошибка! Попробуйте ввести корректный пароль.', style: TextStyle(color: Colors.red, fontWeight: FontWeight.bold),),
-                                    ],
-                                  ),
-                                ),
                                 SizedBox(
                                   height:
                                       MediaQuery.of(context).size.height * 0.05,

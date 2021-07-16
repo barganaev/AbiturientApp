@@ -3,6 +3,7 @@ import 'package:abiturient_app/blocs/colleges_by_region_bloc/colleges_by_region_
 import 'package:abiturient_app/blocs/my_orders_bloc/my_orders_bloc.dart';
 import 'package:abiturient_app/blocs/regions_bloc/regions_bloc.dart';
 import 'package:abiturient_app/screens/logo_screen.dart';
+import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,7 +17,10 @@ Future<void> main() async {
   final appDirectory = await path_provider.getApplicationDocumentsDirectory();
   Hive.init(appDirectory.path);
   await Hive.openBox('myBox');
-  runApp(MyApp());
+  runApp(DevicePreview(
+    enabled: true/*!kReleaseMode*/,
+    builder: (context) => MyApp(),
+    /*child: MyApp()*/));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,6 +36,8 @@ class MyApp extends StatelessWidget {
       this.isIntroSeen = _box.get('isIntroSeen');
     }
     return MaterialApp(
+      locale: DevicePreview.locale(context), // Add the locale here
+      builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(

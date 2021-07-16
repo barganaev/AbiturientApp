@@ -23,6 +23,7 @@ dependencies:
   local_auth: ^1.1.6
   carousel_slider: ^3.0.0
   flutter_launcher_icons: ^0.9.0
+  device_preview: ^0.7.4
 
 flutter_icons:
   image_path: "assets/ico_mob_abit_launch.png"
