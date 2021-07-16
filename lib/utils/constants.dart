@@ -12,7 +12,7 @@ const String COLLEGES_BY_REGION =
     "https://api.abiturient.edus.kz/v1/ru/public/college/list?limit=all&region_ab=";
 const String REGIONS =
     "https://api.abiturient.edus.kz/v1/ru/public/region/list?is_edus=true";
-const String NEWS = "https://api.abiturient.edus.kz/v1/kk/public/news";
+const String NEWS = "https://api.abiturient.edus.kz/v1/ru/public/news";
 
 const String FAQ = "https://api.abiturient.edus.kz/v1/ru/public/faq";
 const String COLLEGE_DETAIL = "https://api.abiturient.edus.kz/v1/ru/public/college/single/"; // 020640003415
